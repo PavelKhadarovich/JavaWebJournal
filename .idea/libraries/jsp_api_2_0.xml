@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="jsp-api-2.0">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/jsp-api-2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/ognl-3.0.13.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/mysql-connector-java-5.1.38.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/servlet-api-2.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/struts2-convention-plugin-2.3.28.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/struts2-core-2.3.28.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/xwork-core-2.3.28.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

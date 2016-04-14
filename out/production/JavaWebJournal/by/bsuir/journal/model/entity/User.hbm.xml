@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="by.bsuir.journal.model.entity.User" table="user" catalog="portal" optimistic-lock="version">
+
+        <id name="id" type="int">
+            <column name="id" length="5" />
+            <generator class="assigned" />
+        </id>
+        <property name="name" type="string">
+            <column name="name" length="20" />
+        </property>
+        <property name="surname" type="string">
+            <column name="surname" length="20" />
+        </property>
+        <property name="login" type="string">
+            <column name="login" length="20" />
+        </property>
+        <property name="passwordHash" type="string">
+            <column name="passwordHash" length="20" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="50" unique="true" />
+        </property>
+        <property name="role" type="by.bsuir.journal.model.entity.User.Role">
+            <column name="role" length="10" />
+        </property>
+    </class>
+</hibernate-mapping>
