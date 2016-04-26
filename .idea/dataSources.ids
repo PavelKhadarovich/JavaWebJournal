@@ -1,544 +1,311 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component name="dataSourceStorage">
-  <data-source name="MySQL - portal@localhost" uuid="cc09e441-d024-47b0-a742-6c5a6da86313">
+  <data-source name="MySQL - journal@localhost" uuid="f7903814-66e1-4a5e-b2b2-721e88105866">
     <database-info product="MySQL" version="5.5.23" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
       <extra-name-characters>#@</extra-name-characters>
       <identifier-quote-string>`</identifier-quote-string>
     </database-info>
     <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
     <database-model serializer="dbm" rdbms="MYSQL" format-version="2.4">
-      <schema id="1" name="portal"/>
-      <table id="2" parent="1" name="place"/>
-      <table id="3" parent="1" name="placetype"/>
-      <table id="4" parent="1" name="report"/>
-      <table id="5" parent="1" name="reportstatus"/>
-      <table id="6" parent="1" name="review"/>
-      <table id="7" parent="1" name="reviewcomment"/>
-      <table id="8" parent="1" name="reviewstatus"/>
-      <table id="9" parent="1" name="task"/>
-      <table id="10" parent="1" name="taskstatus"/>
-      <table id="11" parent="1" name="user"/>
-      <column id="12" parent="2" name="Id">
+      <schema id="1" name="journal"/>
+      <table id="2" parent="1" name="app_user"/>
+      <table id="3" parent="1" name="app_user_user_profile"/>
+      <table id="4" parent="1" name="place"/>
+      <table id="5" parent="1" name="review"/>
+      <table id="6" parent="1" name="reviewcomment"/>
+      <table id="7" parent="1" name="task"/>
+      <table id="8" parent="1" name="user_profile"/>
+      <column id="9" parent="2" name="user_id">
         <mandatory>1</mandatory>
-        <data-type>int(10) unsigned</data-type>
-      </column>
-      <column id="13" parent="2" name="Name">
-        <mandatory>1</mandatory>
-        <data-type>varchar(255)</data-type>
-      </column>
-      <column id="14" parent="2" name="Description">
-        <mandatory>1</mandatory>
-        <data-type>varchar(500)</data-type>
-      </column>
-      <column id="15" parent="2" name="City">
-        <mandatory>1</mandatory>
-        <data-type>varchar(35)</data-type>
-      </column>
-      <column id="16" parent="2" name="Street">
-        <mandatory>1</mandatory>
-        <data-type>varchar(50)</data-type>
-      </column>
-      <column id="17" parent="2" name="House">
         <data-type>int(11)</data-type>
       </column>
-      <column id="18" parent="2" name="Email">
+      <column id="10" parent="2" name="sso_id">
         <mandatory>1</mandatory>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(45)</data-type>
       </column>
-      <column id="19" parent="2" name="PlaceType">
+      <column id="11" parent="2" name="password">
         <mandatory>1</mandatory>
-        <data-type>int(10) unsigned</data-type>
+        <data-type>varchar(300)</data-type>
       </column>
-      <index id="20" parent="2" name="fk_Place_PlaceType1_idx">
-        <columns>PlaceType</columns>
-        <desc-columns></desc-columns>
-      </index>
-      <index id="21" parent="2" name="PlaceId_UNIQUE">
-        <columns>Id</columns>
-        <desc-columns></desc-columns>
-        <unique>1</unique>
-      </index>
-      <key id="22" parent="2" name="PlaceId_UNIQUE">
-        <columns>Id</columns>
-        <underlying-index>PlaceId_UNIQUE</underlying-index>
-      </key>
-      <key id="23" parent="2" name="PRIMARY">
-        <columns>Id
-PlaceType</columns>
+      <column id="12" parent="2" name="first_name">
+        <mandatory>1</mandatory>
+        <data-type>varchar(45)</data-type>
+      </column>
+      <column id="13" parent="2" name="last_name">
+        <mandatory>1</mandatory>
+        <data-type>varchar(45)</data-type>
+      </column>
+      <column id="14" parent="2" name="email">
+        <mandatory>1</mandatory>
+        <data-type>varchar(45)</data-type>
+      </column>
+      <key id="15" parent="2" name="PRIMARY">
+        <columns>user_id</columns>
         <primary>1</primary>
       </key>
-      <foreign-key id="24" parent="2" name="fk_Place_PlaceType1">
-        <columns>PlaceType</columns>
-        <ref-key>~.placetype.Id_UNIQUE</ref-key>
+      <column id="16" parent="3" name="user_id">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="17" parent="3" name="user_profile_id">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <index id="18" parent="3" name="fk_app_user_has_user_profile_app_user1_idx">
+        <columns>user_id</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <index id="19" parent="3" name="fk_app_user_has_user_profile_user_profile1_idx">
+        <columns>user_profile_id</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="20" parent="3" name="PRIMARY">
+        <columns>user_id
+user_profile_id</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="21" parent="3" name="fk_app_user_has_user_profile_app_user1">
+        <columns>user_id</columns>
+        <ref-key>~.app_user.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
-      <column id="25" parent="3" name="Id">
+      <foreign-key id="22" parent="3" name="fk_app_user_has_user_profile_user_profile1">
+        <columns>user_profile_id</columns>
+        <ref-key>~.user_profile.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="23" parent="4" name="place_id">
         <mandatory>1</mandatory>
-        <data-type>int(10) unsigned</data-type>
+        <data-type>int(11)</data-type>
       </column>
-      <column id="26" parent="3" name="Name">
+      <column id="24" parent="4" name="name">
         <mandatory>1</mandatory>
-        <data-type>varchar(50)</data-type>
+        <data-type>varchar(45)</data-type>
       </column>
-      <index id="27" parent="3" name="Id_UNIQUE">
-        <columns>Id</columns>
-        <desc-columns></desc-columns>
-        <unique>1</unique>
-      </index>
-      <key id="28" parent="3" name="Id_UNIQUE">
-        <columns>Id</columns>
-        <underlying-index>Id_UNIQUE</underlying-index>
-      </key>
-      <key id="29" parent="3" name="PRIMARY">
-        <columns>Id</columns>
+      <column id="25" parent="4" name="description">
+        <mandatory>1</mandatory>
+        <data-type>varchar(45)</data-type>
+      </column>
+      <column id="26" parent="4" name="city">
+        <mandatory>1</mandatory>
+        <data-type>varchar(45)</data-type>
+      </column>
+      <column id="27" parent="4" name="street">
+        <mandatory>1</mandatory>
+        <data-type>varchar(45)</data-type>
+      </column>
+      <column id="28" parent="4" name="house">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="29" parent="4" name="email">
+        <mandatory>1</mandatory>
+        <data-type>varchar(45)</data-type>
+      </column>
+      <column id="30" parent="4" name="type">
+        <mandatory>1</mandatory>
+        <data-type>varchar(45)</data-type>
+      </column>
+      <key id="31" parent="4" name="PRIMARY">
+        <columns>place_id</columns>
         <primary>1</primary>
       </key>
-      <column id="30" parent="4" name="Id">
+      <column id="32" parent="5" name="review_id">
         <mandatory>1</mandatory>
-        <data-type>int(10) unsigned</data-type>
+        <data-type>int(11)</data-type>
       </column>
-      <column id="31" parent="4" name="DateCreated">
+      <column id="33" parent="5" name="title">
+        <mandatory>1</mandatory>
+        <data-type>varchar(45)</data-type>
+      </column>
+      <column id="34" parent="5" name="description">
+        <mandatory>1</mandatory>
+        <data-type>varchar(45)</data-type>
+      </column>
+      <column id="35" parent="5" name="text">
+        <mandatory>1</mandatory>
+        <data-type>varchar(45)</data-type>
+      </column>
+      <column id="36" parent="5" name="mark">
+        <mandatory>1</mandatory>
+        <data-type>varchar(45)</data-type>
+      </column>
+      <column id="37" parent="5" name="picture">
+        <mandatory>1</mandatory>
+        <data-type>varchar(45)</data-type>
+      </column>
+      <column id="38" parent="5" name="date">
         <mandatory>1</mandatory>
         <data-type>datetime</data-type>
       </column>
-      <column id="32" parent="4" name="Text">
+      <column id="39" parent="5" name="status">
         <mandatory>1</mandatory>
-        <data-type>text</data-type>
+        <data-type>varchar(45)</data-type>
       </column>
-      <column id="33" parent="4" name="Price">
-        <mandatory>1</mandatory>
-        <data-type>decimal(10,2)</data-type>
-      </column>
-      <column id="34" parent="4" name="StatusId">
+      <column id="40" parent="5" name="place_id">
         <mandatory>1</mandatory>
         <data-type>int(11)</data-type>
       </column>
-      <column id="35" parent="4" name="ReporterId">
+      <column id="41" parent="5" name="user_id">
         <mandatory>1</mandatory>
-        <data-type>int(10) unsigned</data-type>
+        <data-type>int(11)</data-type>
       </column>
-      <column id="36" parent="4" name="ApproverId">
+      <column id="42" parent="5" name="task_id">
         <mandatory>1</mandatory>
-        <data-type>int(10) unsigned</data-type>
-        <default-expression>&apos;0&apos;</default-expression>
+        <data-type>int(11)</data-type>
       </column>
-      <column id="37" parent="4" name="PlaceId">
-        <mandatory>1</mandatory>
-        <data-type>int(10) unsigned</data-type>
-      </column>
-      <index id="38" parent="4" name="fk_Report_Place1_idx">
-        <columns>PlaceId</columns>
+      <index id="43" parent="5" name="fk_review_app_user1_idx">
+        <columns>user_id</columns>
         <desc-columns></desc-columns>
       </index>
-      <index id="39" parent="4" name="fk_Report_ReportStatus_idx">
-        <columns>StatusId</columns>
+      <index id="44" parent="5" name="fk_review_place1_idx">
+        <columns>place_id</columns>
         <desc-columns></desc-columns>
       </index>
-      <index id="40" parent="4" name="fk_Report_User1_idx">
-        <columns>ReporterId</columns>
+      <index id="45" parent="5" name="fk_review_task1_idx">
+        <columns>task_id</columns>
         <desc-columns></desc-columns>
       </index>
-      <index id="41" parent="4" name="fk_Report_User2_idx">
-        <columns>ApproverId</columns>
-        <desc-columns></desc-columns>
-      </index>
-      <index id="42" parent="4" name="Id_UNIQUE">
-        <columns>Id</columns>
-        <desc-columns></desc-columns>
-        <unique>1</unique>
-      </index>
-      <key id="43" parent="4" name="Id_UNIQUE">
-        <columns>Id</columns>
-        <underlying-index>Id_UNIQUE</underlying-index>
-      </key>
-      <key id="44" parent="4" name="PRIMARY">
-        <columns>Id
-StatusId
-ReporterId
-ApproverId
-PlaceId</columns>
+      <key id="46" parent="5" name="PRIMARY">
+        <columns>review_id
+place_id
+user_id
+task_id</columns>
         <primary>1</primary>
       </key>
-      <foreign-key id="45" parent="4" name="fk_Report_Place1">
-        <columns>PlaceId</columns>
-        <ref-key>~.place.PlaceId_UNIQUE</ref-key>
+      <foreign-key id="47" parent="5" name="fk_review_app_user1">
+        <columns>user_id</columns>
+        <ref-key>~.app_user.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
-      <foreign-key id="46" parent="4" name="fk_Report_ReportStatus">
-        <columns>StatusId</columns>
-        <ref-key>~.reportstatus.idReportStatus_UNIQUE</ref-key>
+      <foreign-key id="48" parent="5" name="fk_review_place1">
+        <columns>place_id</columns>
+        <ref-key>~.place.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
-      <foreign-key id="47" parent="4" name="fk_Report_User1">
-        <columns>ReporterId</columns>
-        <ref-key>~.user.Id_UNIQUE</ref-key>
+      <foreign-key id="49" parent="5" name="fk_review_task1">
+        <columns>task_id</columns>
+        <ref-key>journal.task(task_id)</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
-      <foreign-key id="48" parent="4" name="fk_Report_User2">
-        <columns>ApproverId</columns>
-        <ref-key>~.user.Id_UNIQUE</ref-key>
-        <cascade-update-rule>restrict</cascade-update-rule>
-        <cascade-delete-rule>restrict</cascade-delete-rule>
-      </foreign-key>
-      <column id="49" parent="5" name="Id">
+      <column id="50" parent="6" name="reviewcomment_id">
         <mandatory>1</mandatory>
         <data-type>int(11)</data-type>
       </column>
-      <column id="50" parent="5" name="Name">
+      <column id="51" parent="6" name="text">
         <mandatory>1</mandatory>
-        <data-type>varchar(50)</data-type>
+        <data-type>varchar(45)</data-type>
       </column>
-      <index id="51" parent="5" name="idReportStatus_UNIQUE">
-        <columns>Id</columns>
+      <column id="52" parent="6" name="mark">
+        <mandatory>1</mandatory>
+        <data-type>varchar(45)</data-type>
+      </column>
+      <column id="53" parent="6" name="review_id">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="54" parent="6" name="user_id">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <index id="55" parent="6" name="fk_reviewcomment_app_user1_idx">
+        <columns>user_id</columns>
         <desc-columns></desc-columns>
-        <unique>1</unique>
       </index>
-      <key id="52" parent="5" name="idReportStatus_UNIQUE">
-        <columns>Id</columns>
-        <underlying-index>idReportStatus_UNIQUE</underlying-index>
-      </key>
-      <key id="53" parent="5" name="PRIMARY">
-        <columns>Id</columns>
+      <index id="56" parent="6" name="fk_reviewcomment_review_idx">
+        <columns>review_id</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="57" parent="6" name="PRIMARY">
+        <columns>reviewcomment_id
+review_id
+user_id</columns>
         <primary>1</primary>
       </key>
-      <column id="54" parent="6" name="Id">
-        <mandatory>1</mandatory>
-        <data-type>int(10) unsigned</data-type>
-      </column>
-      <column id="55" parent="6" name="Title">
-        <mandatory>1</mandatory>
-        <data-type>varchar(100)</data-type>
-      </column>
-      <column id="56" parent="6" name="ShortDescription">
-        <mandatory>1</mandatory>
-        <data-type>varchar(250)</data-type>
-      </column>
-      <column id="57" parent="6" name="Text">
-        <mandatory>1</mandatory>
-        <data-type>text</data-type>
-      </column>
-      <column id="58" parent="6" name="Mark">
+      <foreign-key id="58" parent="6" name="fk_reviewcomment_app_user1">
+        <columns>user_id</columns>
+        <ref-key>~.app_user.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="59" parent="6" name="fk_reviewcomment_review">
+        <columns>review_id</columns>
+        <ref-key>journal.review(review_id)</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="60" parent="7" name="task_id">
         <mandatory>1</mandatory>
         <data-type>int(11)</data-type>
       </column>
-      <column id="59" parent="6" name="PictureSource">
+      <column id="61" parent="7" name="title">
         <mandatory>1</mandatory>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(45)</data-type>
       </column>
-      <column id="60" parent="6" name="DateCreated">
+      <column id="62" parent="7" name="description">
+        <mandatory>1</mandatory>
+        <data-type>varchar(45)</data-type>
+      </column>
+      <column id="63" parent="7" name="datecreated">
         <mandatory>1</mandatory>
         <data-type>datetime</data-type>
       </column>
-      <column id="61" parent="6" name="PlaceId">
+      <column id="64" parent="7" name="status">
         <mandatory>1</mandatory>
-        <data-type>int(10) unsigned</data-type>
+        <data-type>varchar(45)</data-type>
       </column>
-      <column id="62" parent="6" name="StatusId">
-        <mandatory>1</mandatory>
-        <data-type>int(10) unsigned</data-type>
-      </column>
-      <column id="63" parent="6" name="AuthorId">
-        <mandatory>1</mandatory>
-        <data-type>int(10) unsigned</data-type>
-      </column>
-      <index id="64" parent="6" name="fk_Review_Place1_idx">
-        <columns>PlaceId</columns>
-        <desc-columns></desc-columns>
-      </index>
-      <index id="65" parent="6" name="fk_Review_ReviewStatus1_idx">
-        <columns>StatusId</columns>
-        <desc-columns></desc-columns>
-      </index>
-      <index id="66" parent="6" name="fk_Review_User1_idx">
-        <columns>AuthorId</columns>
-        <desc-columns></desc-columns>
-      </index>
-      <index id="67" parent="6" name="Id_UNIQUE">
-        <columns>Id</columns>
-        <desc-columns></desc-columns>
-        <unique>1</unique>
-      </index>
-      <key id="68" parent="6" name="Id_UNIQUE">
-        <columns>Id</columns>
-        <underlying-index>Id_UNIQUE</underlying-index>
-      </key>
-      <key id="69" parent="6" name="PRIMARY">
-        <columns>Id
-PlaceId
-StatusId
-AuthorId</columns>
-        <primary>1</primary>
-      </key>
-      <foreign-key id="70" parent="6" name="fk_Review_Place1">
-        <columns>PlaceId</columns>
-        <ref-key>~.place.PlaceId_UNIQUE</ref-key>
-        <cascade-update-rule>restrict</cascade-update-rule>
-        <cascade-delete-rule>restrict</cascade-delete-rule>
-      </foreign-key>
-      <foreign-key id="71" parent="6" name="fk_Review_ReviewStatus1">
-        <columns>StatusId</columns>
-        <ref-key>~.reviewstatus.Id_UNIQUE</ref-key>
-        <cascade-update-rule>restrict</cascade-update-rule>
-        <cascade-delete-rule>restrict</cascade-delete-rule>
-      </foreign-key>
-      <foreign-key id="72" parent="6" name="fk_Review_User1">
-        <columns>AuthorId</columns>
-        <ref-key>~.user.Id_UNIQUE</ref-key>
-        <cascade-update-rule>restrict</cascade-update-rule>
-        <cascade-delete-rule>restrict</cascade-delete-rule>
-      </foreign-key>
-      <column id="73" parent="7" name="Id">
-        <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
-      </column>
-      <column id="74" parent="7" name="Text">
-        <mandatory>1</mandatory>
-        <data-type>varchar(500)</data-type>
-      </column>
-      <column id="75" parent="7" name="Mark">
-        <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
-      </column>
-      <column id="76" parent="7" name="AuthorId">
-        <mandatory>1</mandatory>
-        <data-type>int(10) unsigned</data-type>
-      </column>
-      <column id="77" parent="7" name="ReviewId">
-        <mandatory>1</mandatory>
-        <data-type>int(10) unsigned</data-type>
-      </column>
-      <index id="78" parent="7" name="fk_ReviewComment_Review1_idx">
-        <columns>ReviewId</columns>
-        <desc-columns></desc-columns>
-      </index>
-      <index id="79" parent="7" name="fk_ReviewComment_User1_idx">
-        <columns>AuthorId</columns>
-        <desc-columns></desc-columns>
-      </index>
-      <key id="80" parent="7" name="PRIMARY">
-        <columns>Id
-AuthorId
-ReviewId</columns>
-        <primary>1</primary>
-      </key>
-      <foreign-key id="81" parent="7" name="fk_ReviewComment_Review1">
-        <columns>ReviewId</columns>
-        <ref-key>~.review.Id_UNIQUE</ref-key>
-        <cascade-update-rule>restrict</cascade-update-rule>
-        <cascade-delete-rule>restrict</cascade-delete-rule>
-      </foreign-key>
-      <foreign-key id="82" parent="7" name="fk_ReviewComment_User1">
-        <columns>AuthorId</columns>
-        <ref-key>~.user.Id_UNIQUE</ref-key>
-        <cascade-update-rule>restrict</cascade-update-rule>
-        <cascade-delete-rule>restrict</cascade-delete-rule>
-      </foreign-key>
-      <column id="83" parent="8" name="Id">
-        <mandatory>1</mandatory>
-        <data-type>int(10) unsigned</data-type>
-      </column>
-      <column id="84" parent="8" name="Name">
-        <mandatory>1</mandatory>
-        <data-type>varchar(50)</data-type>
-      </column>
-      <index id="85" parent="8" name="Id_UNIQUE">
-        <columns>Id</columns>
-        <desc-columns></desc-columns>
-        <unique>1</unique>
-      </index>
-      <key id="86" parent="8" name="Id_UNIQUE">
-        <columns>Id</columns>
-        <underlying-index>Id_UNIQUE</underlying-index>
-      </key>
-      <key id="87" parent="8" name="PRIMARY">
-        <columns>Id</columns>
-        <primary>1</primary>
-      </key>
-      <column id="88" parent="9" name="Id">
-        <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
-      </column>
-      <column id="89" parent="9" name="Title">
-        <mandatory>1</mandatory>
-        <data-type>varchar(50)</data-type>
-      </column>
-      <column id="90" parent="9" name="Description">
-        <mandatory>1</mandatory>
-        <data-type>varchar(255)</data-type>
-      </column>
-      <column id="91" parent="9" name="DateCreated">
+      <column id="65" parent="7" name="changeddate">
         <mandatory>1</mandatory>
         <data-type>datetime</data-type>
       </column>
-      <column id="92" parent="9" name="ChangedDate">
+      <column id="66" parent="7" name="user_id">
         <mandatory>1</mandatory>
-        <data-type>datetime</data-type>
+        <data-type>int(11)</data-type>
       </column>
-      <column id="93" parent="9" name="StatusId">
+      <column id="67" parent="7" name="place_id">
         <mandatory>1</mandatory>
-        <data-type>int(10) unsigned</data-type>
+        <data-type>int(11)</data-type>
       </column>
-      <column id="94" parent="9" name="ReportId">
-        <mandatory>1</mandatory>
-        <data-type>int(10) unsigned</data-type>
-        <default-expression>&apos;0&apos;</default-expression>
-      </column>
-      <column id="95" parent="9" name="CreatorId">
-        <mandatory>1</mandatory>
-        <data-type>int(10) unsigned</data-type>
-      </column>
-      <column id="96" parent="9" name="AssignedEmployeeId">
-        <mandatory>1</mandatory>
-        <data-type>int(10) unsigned</data-type>
-        <default-expression>&apos;0&apos;</default-expression>
-      </column>
-      <column id="97" parent="9" name="ReviewId">
-        <mandatory>1</mandatory>
-        <data-type>int(10) unsigned</data-type>
-        <default-expression>&apos;0&apos;</default-expression>
-      </column>
-      <index id="98" parent="9" name="fk_Task_Report1_idx">
-        <columns>ReportId</columns>
+      <index id="68" parent="7" name="fk_task_app_user1_idx">
+        <columns>user_id</columns>
         <desc-columns></desc-columns>
       </index>
-      <index id="99" parent="9" name="fk_Task_Review1_idx">
-        <columns>ReviewId</columns>
+      <index id="69" parent="7" name="fk_task_place1_idx">
+        <columns>place_id</columns>
         <desc-columns></desc-columns>
       </index>
-      <index id="100" parent="9" name="fk_Task_TaskStatus1_idx">
-        <columns>StatusId</columns>
-        <desc-columns></desc-columns>
-      </index>
-      <index id="101" parent="9" name="fk_Task_User1_idx">
-        <columns>CreatorId</columns>
-        <desc-columns></desc-columns>
-      </index>
-      <index id="102" parent="9" name="fk_Task_User2_idx">
-        <columns>AssignedEmployeeId</columns>
-        <desc-columns></desc-columns>
-      </index>
-      <index id="103" parent="9" name="Id_UNIQUE">
-        <columns>Id</columns>
-        <desc-columns></desc-columns>
-        <unique>1</unique>
-      </index>
-      <key id="104" parent="9" name="Id_UNIQUE">
-        <columns>Id</columns>
-        <underlying-index>Id_UNIQUE</underlying-index>
-      </key>
-      <key id="105" parent="9" name="PRIMARY">
-        <columns>Id
-StatusId
-ReportId
-CreatorId
-AssignedEmployeeId
-ReviewId</columns>
+      <key id="70" parent="7" name="PRIMARY">
+        <columns>task_id
+user_id
+place_id</columns>
         <primary>1</primary>
       </key>
-      <foreign-key id="106" parent="9" name="fk_Task_Report1">
-        <columns>ReportId</columns>
-        <ref-key>~.report.Id_UNIQUE</ref-key>
+      <foreign-key id="71" parent="7" name="fk_task_app_user1">
+        <columns>user_id</columns>
+        <ref-key>~.app_user.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
-      <foreign-key id="107" parent="9" name="fk_Task_Review1">
-        <columns>ReviewId</columns>
-        <ref-key>~.review.Id_UNIQUE</ref-key>
+      <foreign-key id="72" parent="7" name="fk_task_place1">
+        <columns>place_id</columns>
+        <ref-key>~.place.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
-      <foreign-key id="108" parent="9" name="fk_Task_TaskStatus1">
-        <columns>StatusId</columns>
-        <ref-key>~.taskstatus.Id_UNIQUE</ref-key>
-        <cascade-update-rule>restrict</cascade-update-rule>
-        <cascade-delete-rule>restrict</cascade-delete-rule>
-      </foreign-key>
-      <foreign-key id="109" parent="9" name="fk_Task_User1">
-        <columns>CreatorId</columns>
-        <ref-key>~.user.Id_UNIQUE</ref-key>
-        <cascade-update-rule>restrict</cascade-update-rule>
-        <cascade-delete-rule>restrict</cascade-delete-rule>
-      </foreign-key>
-      <foreign-key id="110" parent="9" name="fk_Task_User2">
-        <columns>AssignedEmployeeId</columns>
-        <ref-key>~.user.Id_UNIQUE</ref-key>
-        <cascade-update-rule>restrict</cascade-update-rule>
-        <cascade-delete-rule>restrict</cascade-delete-rule>
-      </foreign-key>
-      <column id="111" parent="10" name="Id">
+      <column id="73" parent="8" name="id">
         <mandatory>1</mandatory>
-        <data-type>int(10) unsigned</data-type>
+        <data-type>int(11)</data-type>
       </column>
-      <column id="112" parent="10" name="Name">
-        <mandatory>1</mandatory>
-        <data-type>varchar(50)</data-type>
+      <column id="74" parent="8" name="type">
+        <data-type>varchar(45)</data-type>
       </column>
-      <index id="113" parent="10" name="Id_UNIQUE">
-        <columns>Id</columns>
-        <desc-columns></desc-columns>
-        <unique>1</unique>
-      </index>
-      <key id="114" parent="10" name="Id_UNIQUE">
-        <columns>Id</columns>
-        <underlying-index>Id_UNIQUE</underlying-index>
-      </key>
-      <key id="115" parent="10" name="PRIMARY">
-        <columns>Id</columns>
-        <primary>1</primary>
-      </key>
-      <column id="116" parent="11" name="Id">
-        <mandatory>1</mandatory>
-        <data-type>int(10) unsigned</data-type>
-      </column>
-      <column id="117" parent="11" name="Login">
-        <mandatory>1</mandatory>
-        <data-type>varchar(50)</data-type>
-        <default-expression>&apos;login&apos;</default-expression>
-      </column>
-      <column id="118" parent="11" name="PasswordHash">
-        <mandatory>1</mandatory>
-        <data-type>varchar(200)</data-type>
-      </column>
-      <column id="119" parent="11" name="Email">
-        <mandatory>1</mandatory>
-        <data-type>varchar(50)</data-type>
-      </column>
-      <column id="120" parent="11" name="Name">
-        <mandatory>1</mandatory>
-        <data-type>varchar(50)</data-type>
-      </column>
-      <column id="121" parent="11" name="Surname">
-        <mandatory>1</mandatory>
-        <data-type>varchar(40)</data-type>
-      </column>
-      <column id="122" parent="11" name="Role">
-        <mandatory>1</mandatory>
-        <data-type>varchar(20)</data-type>
-      </column>
-      <index id="123" parent="11" name="Id_UNIQUE">
-        <columns>Id</columns>
-        <desc-columns></desc-columns>
-        <unique>1</unique>
-      </index>
-      <index id="124" parent="11" name="Login_UNIQUE">
-        <columns>Login</columns>
-        <desc-columns></desc-columns>
-        <unique>1</unique>
-      </index>
-      <key id="125" parent="11" name="Id_UNIQUE">
-        <columns>Id</columns>
-        <underlying-index>Id_UNIQUE</underlying-index>
-      </key>
-      <key id="126" parent="11" name="Login_UNIQUE">
-        <columns>Login</columns>
-        <underlying-index>Login_UNIQUE</underlying-index>
-      </key>
-      <key id="127" parent="11" name="PRIMARY">
-        <columns>Id</columns>
+      <key id="75" parent="8" name="PRIMARY">
+        <columns>id</columns>
         <primary>1</primary>
       </key>
     </database-model>

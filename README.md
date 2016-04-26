@@ -4,7 +4,7 @@
 
 ### Web journal task
 
-**Description:** journal with articles on places of entertainment.
-**Actors:** guest, user, manager, employee.
-**Entities:** user, task, reviewcomment, review, report, place.
-**Documents:** report, review.
+**Description:** journal with articles on places of entertainment.\n
+**Actors:** guest, user, manager, employee.\n
+**Entities:** user, task, reviewcomment, review, report, place.\n
+**Documents:** report, review.\n
