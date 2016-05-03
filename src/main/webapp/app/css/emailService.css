@@ -1,0 +1,15 @@
+﻿.email-service {
+    width: 400px;
+    background-color: #af1641;
+    position: fixed;
+    margin: 10px 0;
+}
+.email-service-body {
+    padding: 20px;
+}
+
+.email-service-title {
+    color: #ffffff;
+    text-align: center;
+    margin: 20px auto;
+}

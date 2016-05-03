@@ -1,0 +1,95 @@
+﻿<div class="form-container">
+    <h2 class="form-header">Welcome</h2>
+    <form id="register-form" role="form" name="registerForm">
+        <div class="form-body">
+            <div class="form-group"
+                 data-ng-class="{'has-error': registerForm.login.$touched && registerForm.login.$invalid}">
+                <label for="login" class="control-label">Login:</label>
+
+                <input type="text" id="login"
+                       data-ng-model="model.user.username" class="form-control" name="login"
+                       placeholder="Login"
+                       pattern="[a-zA-Z0-9_]+"
+                       aria-describedby="login_error"
+                       data-ng-maxlength="20" required>
+                <div class="help-block" id="login-error">
+                    <span data-ng-show="registerForm.login.$touched && registerForm.login.$error.pattern">
+                        Login can contain letters, digits and _ symbol.
+                    </span>
+                    <span data-ng-show="registerForm.login.$touched && registerForm.login.$error.required">
+                        Login is required.
+                    </span>
+                    <span data-ng-show="registerForm.login.$touched && registerForm.login.$error.maxlength">
+                        Login can't be greater than 20 characters.
+                    </span>
+                </div>
+
+            </div>
+            <div class="form-group"
+                 data-ng-class="{'has-error': registerForm.email.$touched && registerForm.email.$invalid}">
+                <label for="email" class="control-label">Email:</label>
+
+                <input type="text" id="email"
+                       data-ng-model="model.user.email" class="form-control" name="email"
+                       placeholder="Email"
+                       pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/"
+                       aria-describedby="email_error"
+                       data-ng-maxlength="50" required>
+                <div class="help-block" id="email-error">
+                    <span data-ng-show="registerForm.email.$touched && registerForm.email.$error.pattern">
+                        Email must be valid.
+                    </span>
+                    <span data-ng-show="registerForm.email.$touched && registerForm.email.$error.required">
+                        Email is required.
+                    </span>
+                    <span data-ng-show="registerForm.email.$touched && registerForm.email.$error.maxlength">
+                        Email can't be greater than 20 characters.
+                    </span>
+                </div>
+
+            </div>
+            <div class="form-group"
+                 data-ng-class="{'has-error': registerForm.password.$touched && registerForm.password.$invalid}">
+                <label for="password" class="control-label">Password</label>
+
+                <input type="password" id="password"
+                       data-ng-model="model.user.password" class="form-control" name="password"
+                       placeholder="Password"
+                       aria-describedby="pass-error"
+                       pattern="[a-zA-Z0-9_]+"
+                       data-ng-maxlength="20" required>
+                <div class="help-block" id="pass-error">
+                    <span data-ng-show="registerForm.password.$touched && registerForm.password.$error.pattern">
+                        Password can contain letters, digits and _ symbol.
+                    </span>
+                    <span data-ng-show="registerForm.password.$touched && registerForm.password.$error.required">
+                        Password is required.
+                    </span>
+                    <span data-ng-show="registerForm.password.$touched && registerForm.password.$error.maxlength">
+                        Password can't be greater than 20 characters.
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group"
+                 data-ng-class="{'has-error': registerForm.reppassword.$touched && registerForm.reppassword.$invalid}">
+                <label for="reppassword" class="control-label">Repeat password</label>
+
+                <input type="password" id="reppassword"
+                       data-ng-model="model.user.repPassword" class="form-control" name="reppassword"
+                       placeholder="Repeat password"
+                       aria-describedby="rep-pass-error"
+                       pattern="[a-zA-Z0-9_]+"
+                       data-ng-maxlength="20" required>
+                <div class="help-block" id="rep-pass-error">
+                    <span data-ng-show="registerForm.password.$touched && registerForm.password !== registerForm.reppassword">
+                        Passwords must be equal.
+                    </span>
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-success form-submit" data-ng-click="register()">
+            Register
+        </button>
+    </form>
+</div>

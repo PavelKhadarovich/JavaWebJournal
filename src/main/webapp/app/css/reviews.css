@@ -1,0 +1,25 @@
+﻿.review-list {
+    margin: 50px 10% 0 10%;
+    width: 1200px;
+}
+
+.reviewItem {
+    box-shadow: 5px 5px 50px #fffeee;
+    border: 1px solid #909090;
+    margin: 10px 0;
+}
+.review-title {
+    color: #ffffff;
+    background-color: #af1641;
+    padding: 20px 10px;
+    font-family: logo;
+    font-size: 3em;
+}
+
+.review-image {
+    width: 100%
+}
+
+.review-description {
+    padding: 5px 10px;
+}

@@ -1,0 +1,25 @@
+﻿.form-container {
+    width: 500px;
+    margin: 50px auto;
+    box-shadow: 5px 5px 50px #909090;
+}
+
+.form-header {
+    font-size: 4em;
+    background-color: #af1641;
+    padding: 20px 15px;
+    color: #ffffff;
+    font-family: logo;
+}
+
+.form-body {
+    padding: 10px;
+    color: #656565;
+    background-color: #ffffff;
+}
+
+.form-submit {
+    width: 100%;
+    border-radius: 0;
+    height: 50px;
+}
