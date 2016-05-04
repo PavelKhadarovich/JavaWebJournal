@@ -3,11 +3,17 @@
     width: 1200px;
 }
 
-.reviewItem {
-    box-shadow: 5px 5px 50px #fffeee;
-    border: 1px solid #909090;
-    margin: 10px 0;
+.review-body {
+     margin: 50px 10% ;
+     width: 1200px;
 }
+
+.reviewItem {
+    box-shadow: 1px 0 10px #909090;
+    border: 1px solid #fffeee;
+    margin: 10px 0 30px;
+}
+
 .review-title {
     color: #ffffff;
     background-color: #af1641;
@@ -16,10 +22,39 @@
     font-size: 3em;
 }
 
+.review-read-title {
+    color: #af1641;
+    font-family: logo;
+    font-size: 80px;
+    line-height: 80px;
+    float: left;
+}
+
 .review-image {
     width: 100%
 }
-
+.review-rating {
+    margin-left: 20px;
+}
 .review-description {
     padding: 5px 10px;
+    white-space: pre-line
+}
+
+.review-text {
+    padding: 15px 0;
+    white-space: pre-line
+}
+.review-info {
+    float: right;
+    line-height: 80px;
+}
+.mark {
+    border-radius: 50%;
+    background: #af1641;
+    color: white;
+    padding: 15px 20px;
+    font-size: 20px;
+    margin: 10px;
+    font-family: 'Varela Round', sans-serif;
 }

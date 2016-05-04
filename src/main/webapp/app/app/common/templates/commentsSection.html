@@ -1,0 +1,24 @@
+﻿<div class="commect-section-body">
+    <h1 class="comment-section-title">Comments:</h1>
+    <comment data="comment" ng-repeat="comment in comments"></comment>
+    <h3 class="comment-section-title">Add your own comment:</h3>
+    <form id="comment-form" role="form" name="commentForm">
+        <div class="form-group"
+             data-ng-class="{'has-error': commentForm.comment-text.$touched && commentForm.comment-text.$invalid}">
+            <textarea type="text" id="comment-text"
+                      ng-model="commentText" class="form-control" name="comment-text"
+                      placeholder="Place your comment here..."
+                      aria-describedby="comment-text_error"
+                      data-ng-maxlength="200" required></textarea>
+            <div class="help-block" id="comment-text-error">
+                <span data-ng-show="commentForm.comment-text.$touched && commentForm.comment-text.$error.required">
+                    Comment is required.
+                </span>
+                <span data-ng-show="commentForm.comment-text.$touched && commentForm.comment-text.$error.maxlength">
+                    Comment can't be greater than 200 characters.
+                </span>
+            </div>
+        </div>
+        <button class="btn btn-success" ng-click="addComment()">Add comment</button>
+    </form>
+</div>

@@ -1,0 +1,19 @@
+﻿.comment-section-title {
+    padding: 10px 20px;
+    background: #af1641;
+    color: #ffffff;
+    font-family: logo;
+    font-size: 3em;
+    margin: 20px 0;
+}
+
+.comment {
+    box-shadow: 1px 0 10px #909090;
+    border: 1px solid #fffeee;
+    margin: 10px 0 30px;
+    border-radius: 5px;
+    padding: 10px;
+}
+#comment-text {
+    height: 100px;
+}

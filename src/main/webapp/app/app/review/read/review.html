@@ -1,0 +1,14 @@
+﻿<div class="review-body">
+    <div class="clearfix">
+        <div class="review-read-title">{{::vm.review.title}}</div>
+        <div class="review-info">
+            <span>{{::vm.review.date | date : medium}}</span>
+            <span class="review-rating">
+                Rating: <span class="mark">{{::vm.review.mark}}</span>
+            </span>
+        </div>
+    </div>
+    <img class="review-image" ng-src="{{::vm.review.pictureSource}}" />
+    <p class="review-text"> {{::vm.review.text}}</p>
+    <comments-section comments="vm.review.reviewComments"></comments-section>
+</div>

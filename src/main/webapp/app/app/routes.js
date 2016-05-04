@@ -12,9 +12,9 @@
             .state('app', {
                 abstract: true,
                 views: {
-                   main: {
-                        template: '<ui-view/>'
-                   }
+                    main: {
+                        template: '<ui-view />'
+                    }
                 }
             })
             .state('app.dashboard', {
@@ -40,6 +40,18 @@
                 templateUrl: '/app/review/list/reviewList.html',
                 controller: 'reviewListController',
                 controllerAs: 'vm'
+            })
+            .state('app.reviews-read', {
+                url: '/reviews/:id',
+                pageTitle: 'Review',
+                templateUrl: '/app/review/read/review.html',
+                controller: 'reviewController',
+                controllerAs: 'vm',
+                resolve: {
+                    review: ['$stateParams', 'reviewServiceMock', function ($stateParams, reviewServiceMock) {
+                        return reviewServiceMock.getReviewById($stateParams.id);
+                    }]
+                }
             });
         $urlRouterProvider.otherwise('/');
     }
