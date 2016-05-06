@@ -4,7 +4,8 @@
             <review-item ng-repeat="review in vm.reviews" data="review" ui-sref="app.reviews-read({id:review.id})"></review-item>
         </div>
         <div class="col-lg-1  col-md-1 hidden-sm">
-            <email-service-ad></email-service-ad>
+            <email-service-ad class="hidden-sm"></email-service-ad>
+            <a ui-sref="app.reviews-create" class="btn btn-primary btn-create">Create review</a>
         </div>
     </div>
 </div>

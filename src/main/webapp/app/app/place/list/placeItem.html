@@ -1,0 +1,18 @@
+﻿<div class="place-item">
+    <div class="place-title" ng-click="expand()">
+        <span class="place-id">#{{::data.id}}:</span> {{::data.name}}
+        <div class="place-info">
+            <span class="place-status">&#9679; Type: {{::data.type}}</span>
+        </div>
+    </div>
+    <div class="place-body">
+        <h3 class="place-description">
+            Contacts: <span class="place-description-text">{{::data.street}} {{::data.house}}, {{::data.city}}. Email: <a ng-href="mailto:{{::data.email}}">{{::data.email}}</a> </span>
+        </h3>
+        <div ng-show="data.isExpanded">
+            <hr />
+            <h3 class="place-description">Description:</h3>
+            <p>{{::data.description}}</p>
+        </div>
+    </div>
+</div>

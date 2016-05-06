@@ -3,6 +3,7 @@
     background-color: #af1641;
     position: fixed;
     margin: 10px 0;
+    top: 300px;
 }
 .email-service-body {
     padding: 20px;

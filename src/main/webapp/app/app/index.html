@@ -20,9 +20,10 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul id="menu" class="nav navbar-nav navbar-right">
-                    <li class="active"><a href="#" accesskey="1" title="">Homepage</a></li>
-                    <li><a href="#" accesskey="2" title="">Our Clients</a></li>
+                    <li class="active"><a ui-sref="app.profile">Profile</a></li>
                     <li><a ui-sref="app.reviews">Reviews</a></li>
+                    <li><a ui-sref="app.tasks">Tasks</a></li>
+                    <li><a ui-sref="app.places">Places</a></li>
                     <li><a ui-sref="app.login">Login</a></li>
                     <li><a ui-sref="app.register">Register</a></li>
                 </ul>
@@ -42,22 +43,40 @@
     <script src="/vendor/angular.min.js"></script>
     <script src="/vendor/angular-ui-router.min.js"></script>
     <script src="/vendor/lodash.core.min.js"></script>
+    <script src="/vendor/ui-bootstrap-1.3.2.min.js"></script>
+    <script src="/vendor/ui-bootstrap-tpls-1.3.2.min.js"></script>
     <script src="app.js"></script>
     <script src="routes.js"></script>
     <script src="common/lodash.js"></script>
     <script src="authorization/login/login-controller.js"></script>
     <script src="authorization/registration/register-controller.js"></script>
+
     <script src="review/list/reviewList-controller.js"></script>
     <script src="review/list/reviewItem-directive.js"></script>
     <script src="review/read/review-controller.js"></script>
+    <script src="review/edit/reviewEdit-controller.js"></script>
     <script src="review/services/review-service-mock.js"></script>
+
+    <script src="task/list/taskItem-directive.js"></script>
+    <script src="task/list/taskList-controller.js"></script>
+    <script src="task/services/task-service-mock.js"></script>
+    <script src="task/edit/taskEdit-controller.js"></script>
+
+    <script src="place/list/placeItem-directive.js"></script>
+    <script src="place/list/placeList-controller.js"></script>
+    <script src="place/services/place-service-mock.js"></script>
+    <script src="place/edit/placeEdit-controller.js"></script>
+
     <script src="common/directives/emailServiceAd-directive.js"></script>
     <script src="common/directives/commentsSection-directive.js"></script>
     <script src="common/directives/comment-directive.js"></script>
+
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="/css/site.css" />
     <link rel="stylesheet" type="text/css" href="/css/forms.css" />
     <link rel="stylesheet" type="text/css" href="/css/fonts.css" />
+    <link rel="stylesheet" type="text/css" href="/css/tasks.css" />
+    <link rel="stylesheet" type="text/css" href="/css/places.css" />
     <link rel="stylesheet" type="text/css" href="/css/reviews.css" />
     <link rel="stylesheet" type="text/css" href="/css/emailService.css" />
     <link rel="stylesheet" type="text/css" href="/css/comments.css" />

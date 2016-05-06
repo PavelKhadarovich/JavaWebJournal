@@ -1,0 +1,65 @@
+﻿<div class="form-container form-lg">
+    <h2 class="form-header">{{::vm.actionName}} task</h2>
+    <form id="task-form" role="form" name="taskForm">
+        <div class="form-body">
+            <div class="form-group"
+                 data-ng-class="{'has-error': taskForm.title.$touched && taskForm.title.$invalid}">
+                <label for="title" class="control-label">Title:</label>
+
+                <input type="text" id="title"
+                       data-ng-model="vm.task.title" class="form-control" name="title"
+                       placeholder="Title"
+                       aria-describedby="title_error"
+                       data-ng-maxlength="50" required>
+                <div class="help-block" id="title-error">
+                    <span data-ng-show="taskForm.title.$touched && taskForm.title.$error.required">
+                        Title is required.
+                    </span>
+                    <span data-ng-show="taskForm.login.$touched && taskForm.login.$error.maxlength">
+                        Title can't be greater than 50 characters.
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group"
+                 data-ng-class="{'has-error': taskForm.description.$touched && taskForm.description.$invalid}">
+                <label for="description" class="control-label">Description:</label>
+
+                <textarea type="text" id="description"
+                          data-ng-model="vm.task.description" class="form-control" name="description"
+                          placeholder="Description"
+                          pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/"
+                          aria-describedby="description_error"
+                          data-ng-maxlength="200" required></textarea>
+                <div class="help-block" id="description-error">
+                    <span data-ng-show="taskForm.description.$touched && taskForm.description.$error.required">
+                        Description is required.
+                    </span>
+                    <span data-ng-show="taskForm.description.$touched && taskForm.description.$error.maxlength">
+                        Description can't be greater than 200 characters.
+                    </span>
+                </div>
+            </div>
+            
+            <div class="form-group"
+                 data-ng-class="{'has-error': taskForm.placeId.$touched && taskForm.placeId.$invalid}">
+                <label for="placeId" class="control-label">Place ID:</label>
+
+                <input type="number" id="placeId"
+                       data-ng-model="vm.placeId.mark" class="form-control" name="placeId"
+                       placeholder="Place ID"
+                       aria-describedby="placeId-error"
+                       min="1" max="10"
+                       data-ng-maxlength="1" required>
+                <div class="help-block" id="placeId-error">
+                    <span data-ng-show="taskForm.placeId.$touched && taskForm.placeId.$error.required">
+                        Place Id is required.
+                    </span>
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-success form-submit" data-ng-click="vm.submit()">
+            {{::vm.actionName}}
+        </button>
+    </form>
+</div>

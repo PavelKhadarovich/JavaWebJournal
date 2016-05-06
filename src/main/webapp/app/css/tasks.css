@@ -1,0 +1,51 @@
+﻿.task-list {
+    margin: 50px 10% 0 10%;
+    width: 1200px;
+}
+
+.task-title {
+    color: #ffffff;
+    background-color: #af1641;
+    padding: 0 10px;
+    font-family: logo;
+    font-size: 3em;
+}
+
+.task-item {
+    box-shadow: 1px 0 10px #909090;
+    border: 1px solid #fffeee;
+    margin: 10px 0 30px;
+}
+
+.task-status {
+    margin-left: 10px;
+}
+
+.task-id {
+    line-height: 80px;
+    font-family: 'Varela Round', sans-serif;
+    font-size: 0.5em;
+}
+
+.task-info {
+    float: right;
+    line-height: 80px;
+    font-family: 'Varela Round', sans-serif;
+    font-size: 0.5em;
+}
+
+.task-body {
+    margin: 10px;
+}
+
+.task-description {
+    color: #af1641;
+    font-family: logo;
+    font-size: 2.5em;
+}
+.task-description-text {
+    padding: 0 20px;
+    color: #000000;
+    font-family: 'Varela Round', sans-serif;;
+    font-size: 0.5em;
+}

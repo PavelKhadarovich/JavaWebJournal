@@ -1,0 +1,99 @@
+﻿<div class="form-container form-lg">
+    <h2 class="form-header">{{::vm.actionName}} review</h2>
+    <form id="review-form" role="form" name="reviewForm">
+        <div class="form-body">
+            <div class="form-group"
+                 data-ng-class="{'has-error': reviewForm.title.$touched && reviewForm.title.$invalid}">
+                <label for="title" class="control-label">Title:</label>
+
+                <input type="text" id="title"
+                       data-ng-model="vm.review.title" class="form-control" name="title"
+                       placeholder="Title"
+                       aria-describedby="title_error"
+                       data-ng-maxlength="50" required>
+                <div class="help-block" id="title-error">
+                    <span data-ng-show="reviewForm.title.$touched && reviewForm.title.$error.required">
+                        Ttile is required.
+                    </span>
+                    <span data-ng-show="reviewForm.login.$touched && reviewForm.login.$error.maxlength">
+                        Title can't be greater than 50 characters.
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group"
+                 data-ng-class="{'has-error': reviewForm.description.$touched && reviewForm.description.$invalid}">
+                <label for="description" class="control-label">Short description:</label>
+
+                <textarea type="text" id="description"
+                          data-ng-model="vm.review.description" class="form-control" name="description"
+                          placeholder="Short description"
+                          pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/"
+                          aria-describedby="description_error"
+                          data-ng-maxlength="200" required></textarea>
+                <div class="help-block" id="description-error">
+                    <span data-ng-show="reviewForm.description.$touched && reviewForm.description.$error.required">
+                        Description is required.
+                    </span>
+                    <span data-ng-show="reviewForm.description.$touched && reviewForm.description.$error.maxlength">
+                        Description can't be greater than 200 characters.
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group"
+                 data-ng-class="{'has-error': reviewForm.text.$touched && reviewForm.text.$invalid}">
+                <label for="text" class="control-label">Text:</label>
+                <textarea type="text" id="text"
+                          data-ng-model="vm.review.text" class="form-control" name="text"
+                          placeholder="Text"
+                          aria-describedby="text-error"
+                          required></textarea>
+                <div class="help-block" id="text-error">
+                    <span data-ng-show="reviewForm.text.$touched && reviewForm.text.$error.required">
+                        Text is required.
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group"
+                 data-ng-class="{'has-error': reviewForm.mark.$touched && reviewForm.mark.$invalid}">
+                <label for="mark" class="control-label">Mark:</label>
+
+                <input type="number" id="mark"
+                       data-ng-model="vm.review.mark" class="form-control" name="mark"
+                       placeholder="Mark"
+                       aria-describedby="mark-error"
+                       min="1" max="10"
+                       data-ng-maxlength="1" required>
+                <div class="help-block" id="mark-error">
+                    <span data-ng-show="reviewForm.mark.$touched && reviewForm.mark.$error.required">
+                        Mark is required.
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group"
+                 data-ng-class="{'has-error': reviewForm.pictureSource.$touched && reviewForm.pictureSource.$invalid}">
+                <label for="pictureSource" class="control-label">Picture Source</label>
+
+                <input type="text" id="pictureSource"
+                       data-ng-model="vm.review.pictureSource" class="form-control" name="pictureSource"
+                       placeholder="Picture Source"
+                       aria-describedby="pictureSource-error"
+                       data-ng-maxlength="255" required>
+                <div class="help-block" id="pictureSource-error">
+                    <span data-ng-show="reviewForm.pictureSource.$touched && reviewForm.pictureSource.$error.required">
+                        Picture Source is required.
+                    </span>
+                    <span data-ng-show="reviewForm.pictureSource.$touched && reviewForm.pictureSource.$error.maxlength">
+                        Picture Source can't be greater than 255 characters.
+                    </span>
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-success form-submit" data-ng-click="vm.submit()">
+            {{::vm.actionName}}
+        </button>
+    </form>
+</div>

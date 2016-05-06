@@ -1,0 +1,22 @@
+﻿<div class="task-item">
+    <div class="task-title" ng-click="expand()">
+        <span class="task-id">#{{::data.id}}:</span> {{::data.title}}
+        <div class="task-info">
+            {{::data.dateChanged | date : medium}}
+            <span class="task-status">&#9679; Status: {{::data.status}}</span>
+        </div>
+    </div>
+    <div class="task-body">
+        <h3 class="task-description">
+            Assignee:
+            <span class="task-description-text" ng-show="data.isAssigned">{{::data.assignedEmployee.firstName + " " + data.assignedEmployee.lastName}}</span>
+            <span class="task-description-text" ng-hide="data.isAssigned">Not assigned yet. <button class="btn btn-success" ng-click="assignToMe()">Assign to me</button></span>
+        </h3>
+        <div ng-show="data.isExpanded">
+            <hr/>
+            <h3 class="task-description">Description:</h3>
+            <p>{{::data.description}}</p>
+        </div>
+    </div>
+
+</div>

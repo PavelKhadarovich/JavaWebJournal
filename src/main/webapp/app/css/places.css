@@ -1,0 +1,52 @@
+﻿.place-list {
+    margin: 50px 10% 0 10%;
+    width: 1200px;
+}
+
+.place-title {
+    color: #ffffff;
+    background-color: #af1641;
+    padding: 0 10px;
+    font-family: logo;
+    font-size: 3em;
+}
+
+.place-item {
+    box-shadow: 1px 0 10px #909090;
+    border: 1px solid #fffeee;
+    margin: 10px 0 30px;
+}
+
+.place-status {
+    margin-left: 10px;
+}
+
+.place-id {
+    line-height: 80px;
+    font-family: 'Varela Round', sans-serif;
+    font-size: 0.5em;
+}
+
+.place-info {
+    float: right;
+    line-height: 80px;
+    font-family: 'Varela Round', sans-serif;
+    font-size: 0.5em;
+}
+
+.place-body {
+    margin: 10px;
+}
+
+.place-description {
+    color: #af1641;
+    font-family: logo;
+    font-size: 2.5em;
+}
+
+.place-description-text {
+    padding: 0 20px;
+    color: #000000;
+    font-family: 'Varela Round', sans-serif;;
+    font-size: 0.5em;
+}

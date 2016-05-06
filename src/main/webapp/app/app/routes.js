@@ -41,6 +41,19 @@
                 controller: 'reviewListController',
                 controllerAs: 'vm'
             })
+            .state('app.reviews-create', {
+                url: '/reviews/create',
+                pageTitle: 'Create Review',
+                templateUrl: '/app/review/edit/reviewEdit.html',
+                controller: 'reviewEditController',
+                controllerAs: 'vm',
+                resolve: {
+                    review: [
+                        function() {
+                        }
+                    ]
+                }
+            })
             .state('app.reviews-read', {
                 url: '/reviews/:id',
                 pageTitle: 'Review',
@@ -48,11 +61,124 @@
                 controller: 'reviewController',
                 controllerAs: 'vm',
                 resolve: {
-                    review: ['$stateParams', 'reviewServiceMock', function ($stateParams, reviewServiceMock) {
-                        return reviewServiceMock.getReviewById($stateParams.id);
-                    }]
+                    review: [
+                        '$stateParams', 'reviewServiceMock', function($stateParams, reviewServiceMock) {
+                            return reviewServiceMock.getReviewById($stateParams.id);
+                        }
+                    ]
+                }
+            })
+            .state('app.reviews-edit', {
+                url: '/reviews/:id/edit',
+                pageTitle: 'Edit Review',
+                templateUrl: '/app/review/edit/reviewEdit.html',
+                controller: 'reviewEditController',
+                controllerAs: 'vm',
+                resolve: {
+                    review: [
+                        '$stateParams', 'taskServiceMock', function ($stateParams, taskServiceMock) {
+                            return taskServiceMock.getReviewById($stateParams.id);
+                        }
+                    ]
+                }
+
+            }).state('app.tasks', {
+                url: '/tasks',
+                pageTitle: 'Tasks',
+                templateUrl: '/app/task/list/taskList.html',
+                controller: 'taskListController',
+                controllerAs: 'vm',
+                resolve: {
+                    tasks: [
+                        '$stateParams', 'taskServiceMock', function ($stateParams, taskServiceMock) {
+                            return taskServiceMock.getTaskList();
+                        }
+                    ]
+                }
+            })
+            .state('app.tasks-create', {
+                url: '/tasks/create',
+                pageTitle: 'Create Task',
+                templateUrl: '/app/task/edit/taskEdit.html',
+                controller: 'taskEditController',
+                controllerAs: 'vm',
+                resolve: {
+                    task: [
+                        function () {
+                        }
+                    ]
+                }
+            })
+            .state('app.tasks-read', {
+                url: '/tasks/:id',
+                pageTitle: 'Task',
+                templateUrl: '/app/task/read/task.html',
+                controller: 'taskController',
+                controllerAs: 'vm',
+                resolve: {
+                    task: [
+                        '$stateParams', 'taskServiceMock', function ($stateParams, taskServiceMock) {
+                            return taskServiceMock.getTaskById($stateParams.id);
+                        }
+                    ]
+                }
+            })
+            .state('app.places', {
+                url: '/places',
+                pageTitle: 'Places',
+                templateUrl: '/app/place/list/placeList.html',
+                controller: 'placeListController',
+                controllerAs: 'vm',
+                resolve: {
+                    places: [
+                        '$stateParams', 'placeServiceMock', function ($stateParams, placeServiceMock) {
+                            return placeServiceMock.getPlaceList();
+                        }
+                    ]
+                }
+            })
+            .state('app.places-create', {
+                url: '/places/create',
+                pageTitle: 'Create Place',
+                templateUrl: '/app/place/edit/placeEdit.html',
+                controller: 'placeEditController',
+                controllerAs: 'vm',
+                resolve: {
+                    place: [
+                        function () {
+                        }
+                    ]
+                }
+            })
+            .state('app.places-edit', {
+                url: '/places/:id/edit',
+                pageTitle: 'Edit Place',
+                templateUrl: '/app/place/edit/placeEdit.html',
+                controller: 'placeEditController',
+                controllerAs: 'vm',
+                resolve: {
+                    place: [
+                        '$stateParams', 'placeServiceMock', function ($stateParams, placeServiceMock) {
+                            return placeServiceMock.getPlaceById($stateParams.id);
+                        }
+                    ]
+                }
+            })
+            .state('app.profile', {
+                url: '/places/:id/edit',
+                pageTitle: 'Edit Place',
+                templateUrl: '/app/place/edit/placeEdit.html',
+                controller: 'placeEditController',
+                controllerAs: 'vm',
+                resolve: {
+                    place: [
+                        '$stateParams', 'placeServiceMock', function ($stateParams, placeServiceMock) {
+                            return placeServiceMock.getPlaceById($stateParams.id);
+                        }
+                    ]
                 }
             });
+            
         $urlRouterProvider.otherwise('/');
     }
 

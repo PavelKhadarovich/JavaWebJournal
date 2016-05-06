@@ -554,3 +554,17 @@ footer {
 footer a{
     color: #ffffff;
 }
+
+.btn-create {
+    width: 400px;
+    background-color: #af1641;
+    position: fixed;
+    margin: 10px 0;
+    color: #ffffff;
+    padding: 20px 10px;
+    font-family: logo;
+    font-size: 4em;
+}
+hr {
+    border-color: #af1641;
+}

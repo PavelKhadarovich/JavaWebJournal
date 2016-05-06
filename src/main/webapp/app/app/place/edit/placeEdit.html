@@ -1,0 +1,122 @@
+﻿<div class="form-container form-lg">
+    <h2 class="form-header">{{::vm.actionName}} place</h2>
+    <form id="place-form" role="form" name="placeForm">
+        <div class="form-body">
+            <div class="form-group"
+                 data-ng-class="{'has-error': placeForm.name.$touched && placeForm.name.$invalid}">
+                <label for="name" class="control-label">Name:</label>
+
+                <input type="text" id="name"
+                       data-ng-model="vm.place.name" class="form-control" name="name"
+                       placeholder="Name"
+                       aria-describedby="name_error"
+                       data-ng-maxlength="50" required>
+                <div class="help-block" id="name-error">
+                    <span data-ng-show="placeForm.name.$touched && placeForm.name.$error.required">
+                        Name is required.
+                    </span>
+                    <span data-ng-show="placeForm.login.$touched && placeForm.login.$error.maxlength">
+                        Name can't be greater than 50 characters.
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group"
+                 data-ng-class="{'has-error': placeForm.street.$touched && placeForm.street.$invalid}">
+                <label for="street" class="control-label">Street:</label>
+
+                <input type="text" id="street"
+                          data-ng-model="vm.place.street" class="form-control" name="street"
+                          placeholder="Street"
+                          pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/"
+                          aria-describedby="street_error"
+                          data-ng-maxlength="50" required></input>
+                <div class="help-block" id="street-error">
+                    <span data-ng-show="placeForm.street.$touched && placeForm.street.$error.required">
+                        Street is required.
+                    </span>
+                    <span data-ng-show="placeForm.street.$touched && placeForm.street.$error.maxlength">
+                        Street can't be greater than 50 characters.
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group"
+                 data-ng-class="{'has-error': placeForm.city.$touched && placeForm.city.$invalid}">
+                <label for="city" class="control-label">City:</label>
+                <input type="text" id="city"
+                          data-ng-model="vm.place.city" class="form-control" name="city"
+                          placeholder="City"
+                          aria-describedby="city-error"
+                          required></input>
+                <div class="help-block" id="city-error">
+                    <span data-ng-show="placeForm.city.$touched && placeForm.city.$error.required">
+                        City is required.
+                    </span>
+                </div>
+            </div>
+            <div class="form-group"
+                 data-ng-class="{'has-error': placeForm.description.$touched && placeForm.description.$invalid}">
+                <label for="description" class="control-label">Description:</label>
+
+                <textarea type="text" id="description"
+                          data-ng-model="vm.place.description" class="form-control" name="description"
+                          placeholder="Description"
+                          pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/"
+                          aria-describedby="description_error"
+                          data-ng-maxlength="200" required></textarea>
+                <div class="help-block" id="description-error">
+                    <span data-ng-show="placeForm.description.$touched && placeForm.description.$error.required">
+                        Description is required.
+                    </span>
+                    <span data-ng-show="placeForm.description.$touched && placeForm.description.$error.maxlength">
+                        Description can't be greater than 200 characters.
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group"
+                 data-ng-class="{'has-error': placeForm.email.$touched && placeForm.email.$invalid}">
+                <label for="email" class="control-label">Email:</label>
+
+                <input type="text" id="email"
+                       data-ng-model="vm.place.email" class="form-control" name="email"
+                       placeholder="Email"
+                       pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/"
+                       aria-describedby="email_error"
+                       data-ng-maxlength="50" required>
+                <div class="help-block" id="email-error">
+                    <span data-ng-show="placeForm.email.$touched && placeForm.email.$error.pattern">
+                        Email must be valid.
+                    </span>
+                    <span data-ng-show="placeForm.email.$touched && placeForm.email.$error.required">
+                        Email is required.
+                    </span>
+                    <span data-ng-show="placeForm.email.$touched && placeForm.email.$error.maxlength">
+                        Email can't be greater than 20 characters.
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group"
+                 data-ng-class="{'has-error': placeForm.house.$touched && placeForm.house.$invalid}">
+                <label for="house" class="control-label">House:</label>
+
+                <input type="number" id="house"
+                       data-ng-model="vm.place.house" class="form-control" name="house"
+                       placeholder="House"
+                       aria-describedby="house-error"
+                       min="1" max="10"
+                       data-ng-maxlength="1" required>
+                <div class="help-block" id="house-error">
+                    <span data-ng-show="placeForm.house.$touched && placeForm.house.$error.required">
+                        House is required.
+                    </span>
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-success form-submit" data-ng-click="vm.submit()">
+            {{::vm.actionName}}
+        </button>
+    </form>
+</div>

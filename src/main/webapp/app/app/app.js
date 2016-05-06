@@ -2,7 +2,8 @@
     'use strict';
 
     angular.module('javaJournal', [
-        'ui.router'
+        'ui.router',
+        'ui.bootstrap'
     ])
     .run(['$rootScope', function ($rootScope) {
         $rootScope.$on('$stateChangeSuccess', function () {
