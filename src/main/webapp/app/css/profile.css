@@ -1,0 +1,14 @@
+﻿.profile-body {
+     margin: 50px 10% ;
+     width: 1200px;
+}
+
+.profile-title{
+    color: #af1641;
+    font-family: logo;
+    font-size: 3em;
+}
+
+.profile-label {
+     color: #af1641;
+}

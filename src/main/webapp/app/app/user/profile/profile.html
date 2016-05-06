@@ -1,0 +1,10 @@
+﻿<div class="profile-body">
+    <h1 class="profile-title">Your profile, {{::vm.profile.firstName}}</h1>
+    <hr/>
+    <p><span class="profile-label">Login: </span>{{::vm.profile.ssoId}}</p>
+    <p><span class="profile-label">Name: </span>{{::vm.profile.lastName}} {{::vm.profile.firstName}}</p>
+    <p><span class="profile-label">Email: </span>{{::vm.profile.email}}</p>
+    <p><span class="profile-label">Account type: </span>{{::vm.profile.userProfiles[0].type}}</p>
+    <h1 class="profile-title">Assigned tasks:</h1>
+    <task-item ng-repeat="task in vm.tasks" data="task"></task-item>
+</div>

@@ -49,7 +49,7 @@
                 controllerAs: 'vm',
                 resolve: {
                     review: [
-                        function() {
+                        function () {
                         }
                     ]
                 }
@@ -62,7 +62,7 @@
                 controllerAs: 'vm',
                 resolve: {
                     review: [
-                        '$stateParams', 'reviewServiceMock', function($stateParams, reviewServiceMock) {
+                        '$stateParams', 'reviewServiceMock', function ($stateParams, reviewServiceMock) {
                             return reviewServiceMock.getReviewById($stateParams.id);
                         }
                     ]
@@ -90,7 +90,7 @@
                 controllerAs: 'vm',
                 resolve: {
                     tasks: [
-                        '$stateParams', 'taskServiceMock', function ($stateParams, taskServiceMock) {
+                        'taskServiceMock', function (taskServiceMock) {
                             return taskServiceMock.getTaskList();
                         }
                     ]
@@ -116,11 +116,9 @@
                 controller: 'taskController',
                 controllerAs: 'vm',
                 resolve: {
-                    task: [
-                        '$stateParams', 'taskServiceMock', function ($stateParams, taskServiceMock) {
-                            return taskServiceMock.getTaskById($stateParams.id);
-                        }
-                    ]
+                    task: ['$stateParams', 'taskServiceMock', function ($stateParams, taskServiceMock) {
+                        return taskServiceMock.getTaskById($stateParams.id);
+                    }]
                 }
             })
             .state('app.places', {
@@ -131,7 +129,7 @@
                 controllerAs: 'vm',
                 resolve: {
                     places: [
-                        '$stateParams', 'placeServiceMock', function ($stateParams, placeServiceMock) {
+                        'placeServiceMock', function (placeServiceMock) {
                             return placeServiceMock.getPlaceList();
                         }
                     ]
@@ -165,20 +163,25 @@
                 }
             })
             .state('app.profile', {
-                url: '/places/:id/edit',
+                url: '/profile',
                 pageTitle: 'Edit Place',
-                templateUrl: '/app/place/edit/placeEdit.html',
-                controller: 'placeEditController',
+                templateUrl: '/app/user/profile/profile.html',
+                controller: 'profileController',
                 controllerAs: 'vm',
                 resolve: {
-                    place: [
-                        '$stateParams', 'placeServiceMock', function ($stateParams, placeServiceMock) {
-                            return placeServiceMock.getPlaceById($stateParams.id);
+                    profile: [
+                        'profileServiceMock', function (profileServiceMock) {
+                            return profileServiceMock.getUserProfile();
+                        }
+                    ],
+                    tasks: [
+                        'taskServiceMock', function (taskServiceMock) {
+                            return taskServiceMock.getTaskList();
                         }
                     ]
                 }
             });
-            
+
         $urlRouterProvider.otherwise('/');
     }
 
