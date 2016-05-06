@@ -21,14 +21,17 @@ import java.util.List;
 
 @Controller
 @RequestMapping
-//@SessionAttributes("types")
 public class PlaceController {
     @Autowired
     PlaceService placeService;
 
     @Autowired
     MessageSource messageSource;
-    //==============JSON===========================
+
+    //--------------------------------------------------------------------------------------------------//
+    //--------------------------------------------JSON--------------------------------------------------//
+    //--------------------------------------------------------------------------------------------------//
+
     //headers="Accept=application/json"
     @RequestMapping(value = {"/place/"}, method = RequestMethod.GET)
     public ResponseEntity<List<Place>> placeList(){
@@ -93,8 +96,9 @@ public class PlaceController {
         return new ResponseEntity<Place>(HttpStatus.NO_CONTENT);
     }
 
-
-    //==============JSP===========================
+    //--------------------------------------------------------------------------------------------------//
+    //------------------------------------------JSP-----------------------------------------------------//
+    //--------------------------------------------------------------------------------------------------//
 
     @RequestMapping(value = {"/placeslist"}, method = RequestMethod.GET)
     public String placesList(ModelMap model) {
@@ -131,27 +135,18 @@ public class PlaceController {
     }
 
     @RequestMapping(value = {"/places-edit-{name}"}, method = RequestMethod.POST)
-    public String updatePlace(@Valid Place place, ModelMap model, BindingResult result, @PathVariable String name) {
+    public String updatePlaces(@Valid Place place, ModelMap model, BindingResult result, @PathVariable String name) {
 
         placeService.updatePlace(place);
         return "redirect:/placeslist";
     }
 
     @RequestMapping(value = {"/places-delete-{name}"}, method = RequestMethod.GET)
-    public String deletePlace(@PathVariable String name) {
+    public String deletePlaces(@PathVariable String name) {
         Place place = placeService.findByName(name);
         placeService.deletePlaceByName(name);
         return "redirect:/placeslist";
     }
 
-//    @ModelAttribute("types")
-//    public List<String> initializeProfiles() {
-//        List<String> types = new ArrayList<String>() ;
-//        types.add("RESTAURANT");
-//        types.add("CLUB");
-//        types.add("THEATER");
-//        types.add("GALLERY");
-//
-//        return types;
-//    }
+
 }

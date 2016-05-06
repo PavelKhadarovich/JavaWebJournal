@@ -1,5 +1,6 @@
 package by.bsuir.journal.service.impl;
 
+import by.bsuir.journal.dao.impl.ReviewDaoImpl;
 import by.bsuir.journal.model.Review;
 import by.bsuir.journal.service.ReviewService;
 import by.bsuir.journal.dao.ReviewDao;
@@ -14,6 +15,12 @@ import java.util.List;
 public class ReviewServiceImpl implements ReviewService {
     @Autowired
     private ReviewDao dao;
+
+
+    public ReviewServiceImpl(){}
+    public ReviewServiceImpl(ReviewDaoImpl dao){
+        this.dao = dao;
+    }
 
     public Review findById(int id) {
         return dao.findById(id);

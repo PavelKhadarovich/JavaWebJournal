@@ -4,17 +4,13 @@ import by.bsuir.journal.dao.AbstractDao;
 import by.bsuir.journal.dao.ReviewDao;
 import by.bsuir.journal.model.Review;
 import org.hibernate.Criteria;
-import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository("reviewDao")
 public class ReviewDaoImpl extends AbstractDao<Integer, Review> implements ReviewDao {
-    @Autowired
-    private SessionFactory sessionFactory;
 
     public Review findById(int id) {
         Review review = getByKey(id);
@@ -48,7 +44,6 @@ public class ReviewDaoImpl extends AbstractDao<Integer, Review> implements Revie
 
     @SuppressWarnings("unchecked")
     public List<Review> findAllReviews() {
-
         Criteria criteria = createEntityCriteria();
         criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
         List<Review> reviews = (List<Review>)criteria.list();

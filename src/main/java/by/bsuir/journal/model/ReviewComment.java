@@ -1,5 +1,7 @@
 package by.bsuir.journal.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 
 /**
@@ -21,10 +23,12 @@ public class ReviewComment {
 
     @ManyToOne
     @JoinColumn(name = "review_id")
+    @JsonBackReference
     private Review review;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @JsonBackReference
     private User user;
 
     public ReviewComment() {

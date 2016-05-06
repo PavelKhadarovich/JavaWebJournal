@@ -1,5 +1,9 @@
 package by.bsuir.journal.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Set;
@@ -10,8 +14,7 @@ import java.util.Set;
 @Entity
 @Table(name = "task")
 public class Task {
-    @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "task_id")
     private int id;
 
@@ -19,6 +22,7 @@ public class Task {
     private String title;
 
     @Column(length = 255, columnDefinition = "nvarchar", name = "description")
+    @JsonIgnore
     private String description;
 
     @Column(name = "datecreated")
@@ -32,17 +36,19 @@ public class Task {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @JsonBackReference
     private User creator;
 
-    @OneToOne(fetch = FetchType.EAGER,cascade= CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "place_id")
     private Place place;
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "task")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "task")
+    @JsonManagedReference
     private Set<Review> review;
 
     public enum TaskStatus {
-        NEW, COMPLETED
+        NEW, ASSIGNED, CLOSED, COMPLETED
     }
 
     public Task() {}

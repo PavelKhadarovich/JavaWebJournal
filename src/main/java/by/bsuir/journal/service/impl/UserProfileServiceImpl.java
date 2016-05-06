@@ -1,6 +1,7 @@
 package by.bsuir.journal.service.impl;
 
 import by.bsuir.journal.dao.UserProfileDao;
+import by.bsuir.journal.dao.impl.UserProfileDaoImpl;
 import by.bsuir.journal.service.UserProfileService;
 import by.bsuir.journal.model.UserProfile;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,12 @@ public class UserProfileServiceImpl implements UserProfileService {
 	
 	@Autowired
 	UserProfileDao dao;
-	
+
+	public UserProfileServiceImpl(){}
+	public UserProfileServiceImpl(UserProfileDaoImpl dao){
+		this.dao = dao;
+	}
+
 	public UserProfile findById(int id) {
 		return dao.findById(id);
 	}

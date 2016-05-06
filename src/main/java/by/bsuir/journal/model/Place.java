@@ -1,5 +1,8 @@
 package by.bsuir.journal.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -11,7 +14,7 @@ import java.util.Set;
 @Table(name = "place")
 public class Place {
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "place_id")
     private int id;
 
@@ -36,14 +39,17 @@ public class Place {
     @Column(name = "type")
     private String type;
 
-    @OneToMany(mappedBy = "place")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "place")
+    @JsonManagedReference
+    @JsonIgnore
     private Set<Review> reviews;
 
 //    public enum PlaceType {
 //        RESTAURANT, CLUB, THEATER, GALLERY, CASINO
 //    }
 
-    public Place() {}
+    public Place() {
+    }
 
     public Place(String name, String description, String city, String street, Integer house, String email, String place, Set<Review> reviews) {
         this.name = name;

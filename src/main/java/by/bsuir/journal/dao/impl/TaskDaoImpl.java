@@ -4,18 +4,13 @@ import by.bsuir.journal.dao.AbstractDao;
 import by.bsuir.journal.dao.TaskDao;
 import by.bsuir.journal.model.Task;
 import org.hibernate.Criteria;
-import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository("taskDao")
 public class TaskDaoImpl extends AbstractDao<Integer, Task> implements TaskDao {
-    @Autowired
-    private SessionFactory sessionFactory;
-
     public Task findById(int id) {
         Task task = getByKey(id);
         return task;

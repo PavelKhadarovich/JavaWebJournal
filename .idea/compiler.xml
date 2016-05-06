@@ -22,11 +22,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
-        <module name="SpringMVCHibernateManyToManyCRUDExample" />
+        <module name="JavaWebJournal" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="SpringMVCHibernateManyToManyCRUDExample" target="1.5" />
+      <module name="JavaWebJournal" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>

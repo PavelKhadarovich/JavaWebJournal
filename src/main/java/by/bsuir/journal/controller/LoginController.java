@@ -11,9 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 
-/**
- * @author anirudh
- */
 @Controller
 @RequestMapping
 public class LoginController {
@@ -21,11 +18,10 @@ public class LoginController {
     @Autowired
     private UserService userService;
 
-    //==============JSON===========================
+    //--------------------------------------------------------------------------------------------------//
+    //------------------------------------------JSP-----------------------------------------------------//
+    //--------------------------------------------------------------------------------------------------//
 
-
-
-    //==============JSP===========================
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String loginUser(@RequestParam("ssoId") String sso,
                             @RequestParam("password") String password, Model model, HttpSession session) {
@@ -34,10 +30,12 @@ public class LoginController {
         if (persistedUser != null && persistedUser.getPassword().equals(password)) {
             session.setAttribute("user", persistedUser);
             model.addAttribute("success", "User " + persistedUser.getFirstName() + " "+ persistedUser.getLastName() + " signed in successfully");
-            return "home";
+            //return "home";
+            return "jsonTemplate";
         } else {
             model.addAttribute("error", "Incorrect username or password, Please try again!");
-            return "login";
+            //return "login";
+            return "jsonTemplate";
         }
 
     }
@@ -47,7 +45,8 @@ public class LoginController {
         if (session.getAttribute("user") != null) {
             session.invalidate();
         }
-        return "index";
+        //return "index";
+        return "jsonTemplate";
     }
 
     @RequestMapping(value = "/showlogin", method = RequestMethod.GET)

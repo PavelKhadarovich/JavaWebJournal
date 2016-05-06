@@ -1,16 +1,14 @@
 package by.bsuir.journal.dao.impl;
 
-import java.util.List;
-
 import by.bsuir.journal.dao.AbstractDao;
 import by.bsuir.journal.dao.UserProfileDao;
+import by.bsuir.journal.model.UserProfile;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
-import by.bsuir.journal.model.UserProfile;
-
+import java.util.List;
 
 
 @Repository("userProfileDao")
