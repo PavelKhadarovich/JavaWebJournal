@@ -33,7 +33,7 @@ public class PlaceController {
     //--------------------------------------------------------------------------------------------------//
 
     //headers="Accept=application/json"
-    @RequestMapping(value = {"/place/"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/api/place/"}, method = RequestMethod.GET)
     public ResponseEntity<List<Place>> placeList(){
         System.out.println("Try to print list");
         List<Place> places = placeService.findAllPlaces();
@@ -43,7 +43,7 @@ public class PlaceController {
         return new ResponseEntity<List<Place>>(places, HttpStatus.OK);
     }
 
-    @RequestMapping(value = {"/place/{id}"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/api/place/{id}"}, method = RequestMethod.GET)
     public  ResponseEntity<Place> getPlace(@PathVariable("id") int id) {
         Place place = placeService.findById(id);
         if (place == null) {
@@ -52,7 +52,7 @@ public class PlaceController {
         return new ResponseEntity<Place>(place, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/place/", method = RequestMethod.POST)
+    @RequestMapping(value = "/api/place/", method = RequestMethod.POST)
     public ResponseEntity<Void> createPlace(@RequestBody Place place, UriComponentsBuilder ucBuilder) {
 
         if (!placeService.isPlaceNameUnique(place.getId(),place.getName())) {
@@ -63,11 +63,11 @@ public class PlaceController {
         placeService.savePlace(place);
 
         HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(ucBuilder.path("/place/{id}").buildAndExpand(place.getId()).toUri());
+        headers.setLocation(ucBuilder.path("/api/place/{id}").buildAndExpand(place.getId()).toUri());
         return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "/place/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/api/place/{id}", method = RequestMethod.PUT)
     public ResponseEntity<Place> updatePlace(@PathVariable("id") int id, @RequestBody Place place) {
         System.out.println("Updating Place " + id);
 
@@ -82,7 +82,7 @@ public class PlaceController {
         return new ResponseEntity<Place>(currentPlace, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/place/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/api/place/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Place> deletePlace(@PathVariable("id") int id) {
         System.out.println("Fetching & Deleting Place with id " + id);
 

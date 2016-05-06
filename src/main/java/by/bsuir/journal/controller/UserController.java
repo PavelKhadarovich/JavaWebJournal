@@ -108,7 +108,7 @@ public class UserController {
     //--------------------------------------------JSON--------------------------------------------------//
     //--------------------------------------------------------------------------------------------------//
 
-    @RequestMapping(value = {"/user/"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/api/user/"}, method = RequestMethod.GET)
     public ResponseEntity<List<User>> userList() {
         System.out.println("Try to print list of users");
         List<User> users = userService.findAllUsers();
@@ -118,7 +118,7 @@ public class UserController {
         return new ResponseEntity<List<User>>(users, HttpStatus.OK);
     }
 
-    @RequestMapping(value = {"/user/{id}"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/api/user/{id}"}, method = RequestMethod.GET)
     public ResponseEntity<User> getUser(@PathVariable("id") int id) {
         User user = userService.findById(id);
         if (user == null) {
@@ -127,7 +127,7 @@ public class UserController {
         return new ResponseEntity<User>(user, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/user/", method = RequestMethod.POST)
+    @RequestMapping(value = "/api/user/", method = RequestMethod.POST)
     public ResponseEntity<Void> createUser(@RequestBody User user, UriComponentsBuilder ucBuilder) {
 
         if (!userService.isUserSSOUnique(user.getId(), user.getSsoId())) {
@@ -138,11 +138,11 @@ public class UserController {
         userService.saveUser(user);
 
         HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(ucBuilder.path("/user/{id}").buildAndExpand(user.getId()).toUri());
+        headers.setLocation(ucBuilder.path("/api/user/{id}").buildAndExpand(user.getId()).toUri());
         return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "/user/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/api/user/{id}", method = RequestMethod.PUT)
     public ResponseEntity<User> updateUser(@PathVariable("id") int id, @RequestBody User user) {
         System.out.println("Updating User " + id);
 
@@ -157,7 +157,7 @@ public class UserController {
         return new ResponseEntity<User>(currentUser, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/user/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/api/user/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<User> deleteUser(@PathVariable("id") int id) {
         System.out.println("Fetching & Deleting User with id " + id);
 

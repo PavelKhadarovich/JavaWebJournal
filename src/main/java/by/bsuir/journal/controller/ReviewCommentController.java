@@ -5,6 +5,7 @@ import by.bsuir.journal.model.ReviewComment;
 import by.bsuir.journal.model.User;
 import by.bsuir.journal.service.ReviewCommentService;
 import by.bsuir.journal.service.ReviewService;
+import by.bsuir.journal.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.http.HttpHeaders;
@@ -34,13 +35,16 @@ public class ReviewCommentController {
     ReviewCommentService reviewCommentService;
 
     @Autowired
+    UserService userService;
+
+    @Autowired
     MessageSource messageSource;
 
     //--------------------------------------------------------------------------------------------------//
     //--------------------------------------------JSON--------------------------------------------------//
     //--------------------------------------------------------------------------------------------------//
 
-    @RequestMapping(value = {"/reviewComment/{id}"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/api/review/{id}/reviewComment"}, method = RequestMethod.GET)
     public ResponseEntity<List<ReviewComment>> reviewCommentListOfConcreteReview(@PathVariable("id") int id) {
 
         Review review = reviewService.findById(id);
@@ -55,18 +59,19 @@ public class ReviewCommentController {
 
 
 
-    @RequestMapping(value = "/reviewComment/{id}", method = RequestMethod.POST)
-    public ResponseEntity<Void> createComment(HttpSession session, @PathVariable("id") int id, @RequestBody ReviewComment comment, UriComponentsBuilder ucBuilder) {
+    @RequestMapping(value = "/api/user/{userId}/review/{id}/reviewComment", method = RequestMethod.POST)
+    public ResponseEntity<Void> createComment(@PathVariable("id") int id, @PathVariable("userId") int userId,
+                                              @RequestBody ReviewComment comment, UriComponentsBuilder ucBuilder) {
 
         Review review = reviewService.findById(id);
 
-        comment.setUser((User) session.getAttribute("user"));
+        comment.setUser(userService.findById(userId));
         comment.setReview(review);
 
         reviewCommentService.saveReviewComment(comment);
 
         HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(ucBuilder.path("/reviewComment/{id}").buildAndExpand(review.getId()).toUri());
+        headers.setLocation(ucBuilder.path("/api/review/{id}/reviewComment").buildAndExpand(review.getId()).toUri());
         return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
     }
 

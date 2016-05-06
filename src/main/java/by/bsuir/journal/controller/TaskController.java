@@ -45,7 +45,7 @@ public class TaskController {
     //--------------------------------------------------------------------------------------------------//
 
 
-    @RequestMapping(value = {"/user/{id}/task/"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/api/user/{id}/task/"}, method = RequestMethod.GET)
     public ResponseEntity<List<Task>> taskListOfUser(@PathVariable("id") int id) {
         System.out.println("Try to print list of users");
         List<Task> users = taskService.findAllTasksOfUser(id);
@@ -56,7 +56,7 @@ public class TaskController {
 
     }
 
-    @RequestMapping(value = {"/task/"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/api/task/"}, method = RequestMethod.GET)
     public ResponseEntity<List<Task>> taskList() {
         System.out.println("Try to print list of users");
         List<Task> users = taskService.findAllTasks();
@@ -67,7 +67,7 @@ public class TaskController {
 
     }
 
-    @RequestMapping(value = {"/task/{id}"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/api/task/{id}"}, method = RequestMethod.GET)
     public ResponseEntity<Task> getTaskWithId(@PathVariable("id") int id) {
         Task task = taskService.findById(id);
         if (task == null) {
@@ -76,8 +76,7 @@ public class TaskController {
         return new ResponseEntity<Task>(task, HttpStatus.OK);
     }
 
-    //метод assign для Димитара
-    @RequestMapping(value = "user/{userId}/place/{placeId}/task/", method = RequestMethod.POST)
+    @RequestMapping(value = "/api/user/{userId}/place/{placeId}/task/", method = RequestMethod.POST)
     public ResponseEntity<Void> createTaskForPlaceAndCreator(@RequestBody Task task, UriComponentsBuilder ucBuilder,
                                                              @PathVariable("userId") int userId,
                                                              @PathVariable("placeId") int placeId) {
@@ -97,12 +96,12 @@ public class TaskController {
         taskService.saveTask(task);
 
         HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(ucBuilder.path("/task/{id}").buildAndExpand(task.getId()).toUri());
+        headers.setLocation(ucBuilder.path("/api/task/{id}").buildAndExpand(task.getId()).toUri());
         return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
 
     }
 
-    @RequestMapping(value = "/task/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/api/task/{id}", method = RequestMethod.PUT)
     public ResponseEntity<Task> updateTask(@PathVariable("id") int id, @RequestBody Task task) {
         System.out.println("Updating Task " + id);
 
@@ -117,7 +116,7 @@ public class TaskController {
         return new ResponseEntity<Task>(currentTask, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/task/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/api/task/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Task> deleteTask(@PathVariable("id") int id) {
         System.out.println("Fetching & Deleting Task with id " + id);
 
