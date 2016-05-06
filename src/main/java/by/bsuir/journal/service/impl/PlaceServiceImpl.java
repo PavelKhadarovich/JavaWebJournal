@@ -1,6 +1,7 @@
 package by.bsuir.journal.service.impl;
 
 import by.bsuir.journal.dao.PlaceDao;
+import by.bsuir.journal.dao.impl.PlaceDaoImpl;
 import by.bsuir.journal.model.Place;
 import by.bsuir.journal.service.PlaceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,11 @@ public class PlaceServiceImpl implements PlaceService {
 
     @Autowired
     private PlaceDao dao;
+
+    public PlaceServiceImpl(){}
+    public PlaceServiceImpl(PlaceDaoImpl dao){
+        this.dao = dao;
+    }
 
     public Place findById(int id) {
         return dao.findById(id);

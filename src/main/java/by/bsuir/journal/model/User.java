@@ -1,5 +1,6 @@
 package by.bsuir.journal.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
@@ -34,17 +35,20 @@ public class User {
 	@Column(name="EMAIL", nullable=false)
 	private String email;
 
-	@OneToMany(mappedBy = "creator")
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "creator")
+	@JsonManagedReference
 	private Set<Review> review;
 
-	@OneToMany(mappedBy = "user")
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "user")
+	@JsonManagedReference
 	private Set<ReviewComment> reviewComments;
 
-	@OneToMany(mappedBy = "creator")
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "creator")
+	@JsonManagedReference
 	private Set<Task> tasks;
 
 	@NotEmpty
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "APP_USER_USER_PROFILE",
 			joinColumns = { @JoinColumn(name = "USER_ID") },
 			inverseJoinColumns = { @JoinColumn(name = "USER_PROFILE_ID") })

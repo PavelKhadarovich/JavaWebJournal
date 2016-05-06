@@ -2,8 +2,8 @@ package by.bsuir.journal.model;
 
 public enum UserProfileType {
 	USER("USER"),
-	DBA("DBA"),
-	ADMIN("ADMIN");
+	MANAGER("MANAGER"),
+	EMPLOYEE("EMPLOYEE");
 	
 	String userProfileType;
 	

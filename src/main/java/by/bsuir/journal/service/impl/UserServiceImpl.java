@@ -1,14 +1,14 @@
 package by.bsuir.journal.service.impl;
 
-import java.util.List;
-
+import by.bsuir.journal.dao.UserDao;
+import by.bsuir.journal.dao.impl.UserDaoImpl;
 import by.bsuir.journal.model.User;
 import by.bsuir.journal.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import by.bsuir.journal.dao.UserDao;
+import java.util.List;
 
 
 @Service("userService")
@@ -17,6 +17,11 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserDao dao;
+
+	public UserServiceImpl(){}
+	public UserServiceImpl(UserDaoImpl dao){
+		this.dao = dao;
+	}
 
 	public User findById(int id) {
 		return dao.findById(id);

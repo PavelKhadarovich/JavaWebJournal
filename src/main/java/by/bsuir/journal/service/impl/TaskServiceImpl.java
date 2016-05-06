@@ -1,7 +1,7 @@
 package by.bsuir.journal.service.impl;
 
-import by.bsuir.journal.dao.PlaceDao;
 import by.bsuir.journal.dao.TaskDao;
+import by.bsuir.journal.dao.impl.TaskDaoImpl;
 import by.bsuir.journal.model.Task;
 import by.bsuir.journal.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,11 +14,12 @@ import java.util.List;
 @Transactional
 public class TaskServiceImpl implements TaskService {
     @Autowired
-    private PlaceDao placeDao;
-
-    @Autowired
     private TaskDao taskDao;
 
+    public TaskServiceImpl(){}
+    public TaskServiceImpl(TaskDaoImpl dao){
+        this.taskDao = dao;
+    }
 
     public Task findById(int id) {
         return taskDao.findById(id);

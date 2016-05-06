@@ -1,5 +1,9 @@
 package by.bsuir.journal.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Set;
@@ -18,6 +22,7 @@ public class Task {
     private String title;
 
     @Column(length = 255, columnDefinition = "nvarchar", name = "description")
+    @JsonIgnore
     private String description;
 
     @Column(name = "datecreated")
@@ -31,13 +36,15 @@ public class Task {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @JsonBackReference
     private User creator;
 
     @OneToOne
     @JoinColumn(name = "place_id")
     private Place place;
 
-    @OneToMany(mappedBy = "task")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "task")
+    @JsonManagedReference
     private Set<Review> review;
 
     public enum TaskStatus {
