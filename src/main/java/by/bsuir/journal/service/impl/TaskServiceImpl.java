@@ -55,6 +55,10 @@ public class TaskServiceImpl implements TaskService {
         return taskDao.findAllTasks();
     }
 
+    public List<Task> findAllTasksOfUser(int userId) {
+        return taskDao.findAllTasksOfUser(userId);
+    }
+
     public boolean isTaskTitleUnique(Integer id, String title) {
         Task task = findByTitle(title);
         return (task==null||

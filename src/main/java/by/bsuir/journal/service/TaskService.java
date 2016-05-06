@@ -22,5 +22,7 @@ public interface TaskService {
 
     List<Task> findAllTasks();
 
+    List<Task> findAllTasksOfUser(int userId);
+
     boolean isTaskTitleUnique(Integer id, String title);
 }

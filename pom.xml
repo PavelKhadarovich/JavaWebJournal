@@ -12,6 +12,7 @@
 		<springframework.version>4.1.7.RELEASE</springframework.version>
 		<hibernate.version>4.3.10.Final</hibernate.version>
 		<mysql.connector.version>5.1.31</mysql.connector.version>
+		<spring.version>3.1.4.RELEASE</spring.version>
 	</properties>
 
 	<dependencies>
@@ -122,7 +123,22 @@
 			<version>1.9.5</version>
 		</dependency>
 
-
+		<!-- Spring Security -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
 	</dependencies>
 
 

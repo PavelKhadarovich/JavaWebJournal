@@ -21,5 +21,7 @@ public interface TaskDao {
 
     List<Task> findAllTasks();
 
+    List<Task> findAllTasksOfUser(int userId);
+
 
 }

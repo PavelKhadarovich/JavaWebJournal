@@ -44,6 +44,18 @@ public class TaskController {
     //--------------------------------------------JSON--------------------------------------------------//
     //--------------------------------------------------------------------------------------------------//
 
+
+    @RequestMapping(value = {"/user/{id}/task/"}, method = RequestMethod.GET)
+    public ResponseEntity<List<Task>> taskListOfUser(@PathVariable("id") int id) {
+        System.out.println("Try to print list of users");
+        List<Task> users = taskService.findAllTasksOfUser(id);
+        if (users.isEmpty()) {
+            return new ResponseEntity<List<Task>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
+        }
+        return new ResponseEntity<List<Task>>(users, HttpStatus.OK);
+
+    }
+
     @RequestMapping(value = {"/task/"}, method = RequestMethod.GET)
     public ResponseEntity<List<Task>> taskList() {
         System.out.println("Try to print list of users");

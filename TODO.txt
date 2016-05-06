@@ -1,0 +1,9 @@
+    <error-page>
+        <error-code>404</error-code>
+        <location>views/error.jsp</location>
+    </error-page>
+
+    <error-page>
+        <exception-type>java.lang.Throwable</exception-type>
+        <location>views/error.jsp</location>
+    </error-page>
