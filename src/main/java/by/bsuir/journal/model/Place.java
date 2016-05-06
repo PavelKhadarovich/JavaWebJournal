@@ -10,7 +10,8 @@ import java.util.Set;
 @Entity
 @Table(name = "place")
 public class Place {
-    @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "place_id")
     private int id;
 

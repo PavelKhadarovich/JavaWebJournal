@@ -46,8 +46,11 @@ public class TaskDaoImpl extends AbstractDao<Integer, Task> implements TaskDao {
         delete(task);
     }
 
+    @SuppressWarnings("unchecked")
     public List<Task> findAllTasks() {
-        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Task.class);
-        return criteria.list();
+        Criteria criteria = createEntityCriteria();
+        criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+        List<Task> tasks = (List<Task>)criteria.list();
+        return tasks;
     }
 }

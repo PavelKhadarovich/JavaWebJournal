@@ -32,6 +32,12 @@ public class ReviewController {
     @Autowired
     MessageSource messageSource;
 
+    //==============JSON===========================
+
+
+
+    //==============JSP===========================
+
     @RequestMapping(value = {"/reviewslist"}, method = RequestMethod.GET)
     public String reviewsList(ModelMap model) {
         List<Review> reviews = reviewService.findAllReviews();

@@ -10,7 +10,8 @@ import java.util.Set;
 @Entity
 @Table(name = "task")
 public class Task {
-    @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "task_id")
     private int id;
 
@@ -33,15 +34,15 @@ public class Task {
     @JoinColumn(name = "user_id")
     private User creator;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER,cascade= CascadeType.ALL)
     @JoinColumn(name = "place_id")
     private Place place;
 
-    @OneToMany(mappedBy = "task")
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "task")
     private Set<Review> review;
 
     public enum TaskStatus {
-        NEW, ASSIGNED, CLOSED, COMPLETED
+        NEW, COMPLETED
     }
 
     public Task() {}

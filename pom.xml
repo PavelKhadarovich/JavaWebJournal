@@ -3,15 +3,16 @@
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.websystique.springmvc</groupId>
-	<artifactId>SpringMVCHibernateManyToManyCRUDExample</artifactId>
+	<artifactId>JavaWebJournal</artifactId>
 	<packaging>war</packaging>
 	<version>1.0.0</version>
-	<name>SpringMVCHibernateManyToManyCRUDExample</name>
+	<name>JavaWebJournal</name>
 
   	<properties>
 		<springframework.version>4.1.7.RELEASE</springframework.version>
 		<hibernate.version>4.3.10.Final</hibernate.version>
 		<mysql.connector.version>5.1.31</mysql.connector.version>
+		<log4j.version>2.2</log4j.version>
 	</properties>
 
 	<dependencies>
@@ -42,11 +43,10 @@
 			<version>${springframework.version}</version>
 		</dependency>
 
-		<!-- Hibernate -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
-			<version>${hibernate.version}</version>
+			<version>5.0.2.Final</version>
 		</dependency>
 
 		<!-- jsr303 validation -->
@@ -84,7 +84,75 @@
 		    <artifactId>jstl</artifactId>
 		    <version>1.2</version>
 		</dependency>
-		
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.7.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>2.7.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+			<version>2.7.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.jaxrs</groupId>
+			<artifactId>jackson-jaxrs-json-provider</artifactId>
+			<version>2.4.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.module</groupId>
+			<artifactId>jackson-module-jaxb-annotations</artifactId>
+			<version>2.4.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- Apache Commons Logging -->
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.2</version>
+		</dependency>
+		<!-- LOG4J API -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+		<!-- LOG4J Core -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+		<!-- SLF4J/LOG4J Binding -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-slf4j-impl</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+		<!-- LOG4J/Commons Logging Binding -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-jcl</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -96,12 +164,12 @@
 					<version>2.4</version>
 					<configuration>
 						<warSourceDirectory>src/main/webapp</warSourceDirectory>
-						<warName>SpringMVCHibernateManyToManyCRUDExample</warName>
+						<warName>JavaWebJournal</warName>
 						<failOnMissingWebXml>false</failOnMissingWebXml>
 					</configuration>
 				</plugin>
 			</plugins>
 		</pluginManagement>
-		<finalName>SpringMVCHibernateManyToManyCRUDExample</finalName>
+		<finalName>JavaWebJournal</finalName>
 	</build>
 </project>

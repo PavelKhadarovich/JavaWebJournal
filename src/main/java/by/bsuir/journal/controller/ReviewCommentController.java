@@ -28,6 +28,12 @@ public class ReviewCommentController {
     @Autowired
     MessageSource messageSource;
 
+    //==============JSON===========================
+
+
+
+    //==============JSP===========================
+
     @RequestMapping(value = {"/reviewsComment-create-{reviewId}"}, method = RequestMethod.GET)
     public String newTask(ModelMap model, @PathVariable String reviewId) {
         ReviewComment reviewComment = new ReviewComment();

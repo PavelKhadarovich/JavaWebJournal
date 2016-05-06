@@ -31,6 +31,12 @@ public class TaskController {
     @Autowired
     MessageSource messageSource;
 
+    //==============JSON===========================
+
+
+
+    //==============JSP===========================
+
     @RequestMapping(value = {"/taskslist"}, method = RequestMethod.GET)
     public String tasksList(ModelMap model) {
         List<Task> tasks = taskService.findAllTasks();

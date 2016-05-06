@@ -1,6 +1,5 @@
 package by.bsuir.journal.service.impl;
 
-import by.bsuir.journal.dao.PlaceDao;
 import by.bsuir.journal.dao.TaskDao;
 import by.bsuir.journal.model.Task;
 import by.bsuir.journal.service.TaskService;
@@ -13,9 +12,6 @@ import java.util.List;
 @Service("taskService")
 @Transactional
 public class TaskServiceImpl implements TaskService {
-    @Autowired
-    private PlaceDao placeDao;
-
     @Autowired
     private TaskDao taskDao;
 

@@ -46,8 +46,12 @@ public class ReviewDaoImpl extends AbstractDao<Integer, Review> implements Revie
         delete(review);
     }
 
+    @SuppressWarnings("unchecked")
     public List<Review> findAllReviews() {
-        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Review.class);
-        return criteria.list();
+
+        Criteria criteria = createEntityCriteria();
+        criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+        List<Review> reviews = (List<Review>)criteria.list();
+        return reviews;
     }
 }

@@ -10,7 +10,8 @@ import java.util.Set;
 @Table(name="APP_USER")
 public class User {
 
-	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Id
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	@Column(name = "user_id")
 	private Integer id;
 
@@ -40,7 +41,7 @@ public class User {
 	@OneToMany(mappedBy = "user")
 	private Set<ReviewComment> reviewComments;
 
-	@OneToMany(mappedBy = "creator")
+	@OneToMany(fetch = FetchType.EAGER,mappedBy = "creator",cascade= CascadeType.ALL)
 	private Set<Task> tasks;
 
 	@NotEmpty
@@ -106,44 +107,80 @@ public class User {
 		this.userProfiles = userProfiles;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((ssoId == null) ? 0 : ssoId.hashCode());
-		return result;
+
+	public Set<Review> getReview() {
+		return review;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (!(obj instanceof User))
-			return false;
-		User other = (User) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (ssoId == null) {
-			if (other.ssoId != null)
-				return false;
-		} else if (!ssoId.equals(other.ssoId))
-			return false;
-		return true;
+	public void setReview(Set<Review> review) {
+		this.review = review;
+	}
+
+	public Set<ReviewComment> getReviewComments() {
+		return reviewComments;
+	}
+
+	public void setReviewComments(Set<ReviewComment> reviewComments) {
+		this.reviewComments = reviewComments;
+	}
+
+	public Set<Task> getTasks() {
+		return tasks;
+	}
+
+	public void setTasks(Set<Task> tasks) {
+		this.tasks = tasks;
 	}
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", ssoId=" + ssoId + ", password=" + password
-				+ ", firstName=" + firstName + ", lastName=" + lastName
-				+ ", email=" + email + "]";
+		return "User{" +
+				"id=" + id +
+				", ssoId='" + ssoId + '\'' +
+				", password='" + password + '\'' +
+				", firstName='" + firstName + '\'' +
+				", lastName='" + lastName + '\'' +
+				", email='" + email + '\'' +
+				", review=" + review +
+				", reviewComments=" + reviewComments +
+				", tasks=" + tasks +
+				", userProfiles=" + userProfiles +
+				'}';
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
 
+		User user = (User) o;
 
+		if (id != null ? !id.equals(user.id) : user.id != null) return false;
+		if (ssoId != null ? !ssoId.equals(user.ssoId) : user.ssoId != null) return false;
+		if (password != null ? !password.equals(user.password) : user.password != null) return false;
+		if (firstName != null ? !firstName.equals(user.firstName) : user.firstName != null) return false;
+		if (lastName != null ? !lastName.equals(user.lastName) : user.lastName != null) return false;
+		if (email != null ? !email.equals(user.email) : user.email != null) return false;
+		if (review != null ? !review.equals(user.review) : user.review != null) return false;
+		if (reviewComments != null ? !reviewComments.equals(user.reviewComments) : user.reviewComments != null)
+			return false;
+		if (tasks != null ? !tasks.equals(user.tasks) : user.tasks != null) return false;
+		return userProfiles != null ? userProfiles.equals(user.userProfiles) : user.userProfiles == null;
+
+	}
+
+	@Override
+	public int hashCode() {
+		int result = id != null ? id.hashCode() : 0;
+		result = 31 * result + (ssoId != null ? ssoId.hashCode() : 0);
+		result = 31 * result + (password != null ? password.hashCode() : 0);
+		result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
+		result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
+		result = 31 * result + (email != null ? email.hashCode() : 0);
+		result = 31 * result + (review != null ? review.hashCode() : 0);
+		result = 31 * result + (reviewComments != null ? reviewComments.hashCode() : 0);
+		result = 31 * result + (tasks != null ? tasks.hashCode() : 0);
+		result = 31 * result + (userProfiles != null ? userProfiles.hashCode() : 0);
+		return result;
+	}
 }

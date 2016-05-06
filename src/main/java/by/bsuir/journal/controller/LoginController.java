@@ -21,7 +21,11 @@ public class LoginController {
     @Autowired
     private UserService userService;
 
+    //==============JSON===========================
 
+
+
+    //==============JSP===========================
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String loginUser(@RequestParam("ssoId") String sso,
                             @RequestParam("password") String password, Model model, HttpSession session) {
