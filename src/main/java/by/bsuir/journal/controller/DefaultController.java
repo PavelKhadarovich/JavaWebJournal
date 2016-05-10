@@ -1,7 +1,15 @@
 package by.bsuir.journal.controller;
 
-/**
- * Created by Вероника on 07.05.2016.
- */
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+@RequestMapping("/")
+@Controller
 public class DefaultController {
+    @RequestMapping(value = {"/","/index"}, method = RequestMethod.GET)
+    public String goToIndex() {
+        return "index";
+    }
 }

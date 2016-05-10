@@ -1,6 +1,5 @@
 package by.bsuir.journal.model;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -18,11 +17,6 @@ public class UserTest {
         user.setLastName("ivanova");
         user.setEmail("annaivanova@gmail.com");
         user.setPassword("1234");
-    }
-
-    @After
-    public void tearDown() throws Exception {
-
     }
 
     @Test
@@ -43,12 +37,13 @@ public class UserTest {
 
     @Test
     public void testSetPassword() throws Exception {
-
+        userForSet.setPassword("1234");
+        assertEquals("1234", userForSet.getPassword());
     }
 
     @Test
     public void testGetFirstName() throws Exception {
-
+        assertEquals("anna", user.getFirstName());
     }
 
     @Test
@@ -59,31 +54,24 @@ public class UserTest {
 
     @Test
     public void testGetLastName() throws Exception {
-
+        assertEquals("ivanova", user.getLastName());
     }
 
     @Test
     public void testSetLastName() throws Exception {
-
+        userForSet.setLastName("last");
+        assertEquals("last", userForSet.getLastName());
     }
 
     @Test
     public void testGetEmail() throws Exception {
-
+        assertEquals("annaivanova@gmail.com", user.getEmail());
     }
 
     @Test
     public void testSetEmail() throws Exception {
-
+        userForSet.setEmail("email");
+        assertEquals("email", userForSet.getEmail());
     }
 
-    @Test
-    public void testGetUserProfiles() throws Exception {
-
-    }
-
-    @Test
-    public void testSetUserProfiles() throws Exception {
-
-    }
 }

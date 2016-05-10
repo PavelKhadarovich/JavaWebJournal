@@ -3,11 +3,16 @@ package by.bsuir.journal.controller;
 import by.bsuir.journal.model.User;
 import by.bsuir.journal.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.servlet.http.HttpSession;
 
@@ -17,6 +22,26 @@ public class LoginController {
 
     @Autowired
     private UserService userService;
+    //--------------------------------------------------------------------------------------------------//
+    //--------------------------------------------JSON--------------------------------------------------//
+    //--------------------------------------------------------------------------------------------------//
+
+
+
+    @RequestMapping(value = "/api/login", method = RequestMethod.POST)
+    public ResponseEntity<Void> loginUser(@RequestBody User user, UriComponentsBuilder ucBuilder, HttpSession session) {
+
+//        if (user!=null && user.getPassword().equals(password))) {
+//            return new ResponseEntity<Void>(HttpStatus.CONFLICT);
+//        }
+
+        session.setAttribute("user", user);
+        userService.saveUser(user);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setLocation(ucBuilder.path("/api/user/{id}").buildAndExpand(user.getId()).toUri());
+        return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
+    }
 
     //--------------------------------------------------------------------------------------------------//
     //------------------------------------------JSP-----------------------------------------------------//

@@ -4,7 +4,18 @@
 
 ### Web journal task
 
-**Description:** journal with articles on places of entertainment.\n
-**Actors:** guest, user, manager, employee.\n
-**Entities:** user, task, reviewcomment, review, report, place.\n
-**Documents:** report, review.\n
+**Description:** journal with articles on places of entertainment.
+
+**Actors:** guest, user, manager, employee.
+
+**Entities:** user, task, reviewcomment, review, place.
+
+**Documents:** report, review.
+
+### Running
+
+It is a standard Maven project and can be imported into your favorite IDE.
+You run the example by starting project with local server and navigating to http://localhost:8080/.
+If everything is correct you should see a welcome page of Journal.
+
+

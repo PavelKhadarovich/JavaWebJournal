@@ -1,99 +1,55 @@
 package by.bsuir.journal.model;
 
+import org.junit.Before;
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by Вероника on 05.05.2016.
  */
 public class PlaceTest {
 
-    @Test
-    public void testGetId() throws Exception {
+    private Place place = new Place();
+    private Place placeForSet = new Place();
 
-    }
-
-    @Test
-    public void testSetId() throws Exception {
-
+    @Before
+    public void setUp() throws Exception {
+        place.setName("name");
+        place.setDescription("description");
+        place.setEmail("email");
     }
 
     @Test
     public void testGetName() throws Exception {
-
+        assertEquals("name", place.getName());
     }
 
     @Test
     public void testSetName() throws Exception {
-
-    }
-
-    @Test
-    public void testGetReviews() throws Exception {
-
-    }
-
-    @Test
-    public void testSetReviews() throws Exception {
-
+        placeForSet.setName("name");
+        assertEquals("name", place.getName());
     }
 
     @Test
     public void testGetDescription() throws Exception {
-
+        assertEquals("description", place.getDescription());
     }
 
     @Test
     public void testSetDescription() throws Exception {
-
-    }
-
-    @Test
-    public void testGetCity() throws Exception {
-
-    }
-
-    @Test
-    public void testSetCity() throws Exception {
-
-    }
-
-    @Test
-    public void testGetStreet() throws Exception {
-
-    }
-
-    @Test
-    public void testSetStreet() throws Exception {
-
-    }
-
-    @Test
-    public void testGetHouse() throws Exception {
-
-    }
-
-    @Test
-    public void testSetHouse() throws Exception {
-
+        placeForSet.setDescription("description");
+        assertEquals("description", place.getDescription());
     }
 
     @Test
     public void testGetEmail() throws Exception {
-
+        assertEquals("email", place.getEmail());
     }
 
     @Test
     public void testSetEmail() throws Exception {
-
-    }
-
-    @Test
-    public void testGetType() throws Exception {
-
-    }
-
-    @Test
-    public void testSetType() throws Exception {
-
+        placeForSet.setEmail("email");
+        assertEquals("email", place.getEmail());
     }
 }

@@ -46,9 +46,19 @@ public class TaskServiceImplTest {
         assertEquals(task, serviceMock.findByPlaceId(any(Integer.class)));
     }
 
+    @Test
+    public void testSave() throws Exception {
+        Task task = new Task();
+        when(serviceMock.findByPlaceId(any(Integer.class))).thenReturn(task);
+
+        serviceMock.saveTask(task);
+        verify(daoMock).save(any(Task.class));
+
+        verify(daoMock, times(1)).save(any(Task.class));
+    }
 
     @Test
-    public void testSaveAndDeleteTaskByTitle() throws Exception {
+    public void testDeleteTaskByTitle() throws Exception {
         Task task = new Task();
         when(serviceMock.findByPlaceId(any(Integer.class))).thenReturn(task);
 

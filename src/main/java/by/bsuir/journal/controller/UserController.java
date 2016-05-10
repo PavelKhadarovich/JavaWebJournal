@@ -16,13 +16,13 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Locale;
 
 
 @Controller
-@RequestMapping("/")
 @SessionAttributes("roles")
 public class UserController {
 
@@ -42,10 +42,10 @@ public class UserController {
     //------------------------------------------JSP-----------------------------------------------------//
     //--------------------------------------------------------------------------------------------------//
 
-    @RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
-    public String goToIndex() {
-        return "index";
-    }
+//    @RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
+//    public String goToIndex() {
+//        return "index";
+//    }
 
     @RequestMapping(value = {"/list"}, method = RequestMethod.GET)
     public String listUsers(ModelMap model) {
@@ -128,7 +128,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/api/user/", method = RequestMethod.POST)
-    public ResponseEntity<Void> createUser(@RequestBody User user, UriComponentsBuilder ucBuilder) {
+    public ResponseEntity<Void> createUser(@RequestBody User user, UriComponentsBuilder ucBuilder, HttpSession session) {
 
         if (!userService.isUserSSOUnique(user.getId(), user.getSsoId())) {
             System.out.println("A User with name " + user.getFirstName() + " already exist");
@@ -136,7 +136,7 @@ public class UserController {
         }
 
         userService.saveUser(user);
-
+        session.setAttribute("user",user);
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(ucBuilder.path("/api/user/{id}").buildAndExpand(user.getId()).toUri());
         return new ResponseEntity<Void>(headers, HttpStatus.CREATED);

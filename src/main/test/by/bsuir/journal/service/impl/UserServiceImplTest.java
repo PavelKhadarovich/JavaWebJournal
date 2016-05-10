@@ -40,18 +40,25 @@ public class UserServiceImplTest {
         assertEquals(user, userServiceMock.findBySSO(any(String.class)));
     }
 
-
     @Test
-    public void testSaveAndDeleteUser() throws Exception {
+    public void testSave() throws Exception {
         User user = new User();
         when(userDaoMock.findById(any(Integer.class))).thenReturn(user);
 
         userServiceMock.saveUser(new User());
-        userServiceMock.deleteUserBySSO("");
 
         verify(userDaoMock).save(any(User.class));
-        verify(userDaoMock).deleteBySSO("");
         verify(userDaoMock, times(1)).save(any(User.class));
+    }
+
+    @Test
+    public void testDeleteUser() throws Exception {
+        User user = new User();
+        when(userDaoMock.findById(any(Integer.class))).thenReturn(user);
+
+        userServiceMock.deleteUserBySSO("");
+
+        verify(userDaoMock).deleteBySSO("");
         verify(userDaoMock, times(1)).deleteBySSO("");
     }
 
