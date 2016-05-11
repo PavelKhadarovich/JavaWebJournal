@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="journalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="app_user">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sso_id" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="first_name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="last_name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="review" Relationship="Self.fk_review_app_user1" FromRole="app_user" ToRole="review" />
+    <NavigationProperty Name="reviewcomment" Relationship="Self.fk_reviewcomment_app_user1" FromRole="app_user" ToRole="reviewcomment" />
+    <NavigationProperty Name="task" Relationship="Self.fk_task_app_user1" FromRole="app_user" ToRole="task" />
+    <NavigationProperty Name="user_profile" Relationship="Self.app_user_user_profile" FromRole="app_user" ToRole="user_profile" />
+  </EntityType>
+  <EntityType Name="place">
+    <Key>
+      <PropertyRef Name="place_id" />
+    </Key>
+    <Property Name="place_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="city" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="street" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="house" Type="Int32" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="type" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="review" Relationship="Self.fk_review_place1" FromRole="place" ToRole="review" />
+    <NavigationProperty Name="task" Relationship="Self.fk_task_place1" FromRole="place" ToRole="task" />
+  </EntityType>
+  <EntityType Name="review">
+    <Key>
+      <PropertyRef Name="review_id" />
+      <PropertyRef Name="place_id" />
+      <PropertyRef Name="user_id" />
+      <PropertyRef Name="task_id" />
+    </Key>
+    <Property Name="review_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="text" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="mark" Type="Int32" Nullable="false" />
+    <Property Name="picture" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="date" Type="DateTime" Nullable="false" />
+    <Property Name="status" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="place_id" Type="Int32" Nullable="false" />
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <Property Name="task_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="app_user" Relationship="Self.fk_review_app_user1" FromRole="review" ToRole="app_user" />
+    <NavigationProperty Name="place" Relationship="Self.fk_review_place1" FromRole="review" ToRole="place" />
+  </EntityType>
+  <EntityType Name="reviewcomment">
+    <Key>
+      <PropertyRef Name="reviewcomment_id" />
+      <PropertyRef Name="review_id" />
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="reviewcomment_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="text" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="mark" Type="Int32" Nullable="false" />
+    <Property Name="review_id" Type="Int32" Nullable="false" />
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="app_user" Relationship="Self.fk_reviewcomment_app_user1" FromRole="reviewcomment" ToRole="app_user" />
+  </EntityType>
+  <EntityType Name="task">
+    <Key>
+      <PropertyRef Name="task_id" />
+      <PropertyRef Name="user_id" />
+      <PropertyRef Name="place_id" />
+    </Key>
+    <Property Name="task_id" Type="Int32" Nullable="false" />
+    <Property Name="title" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="datecreated" Type="DateTime" Nullable="false" />
+    <Property Name="status" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="changeddate" Type="DateTime" />
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <Property Name="place_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="app_user" Relationship="Self.fk_task_app_user1" FromRole="task" ToRole="app_user" />
+    <NavigationProperty Name="place" Relationship="Self.fk_task_place1" FromRole="task" ToRole="place" />
+  </EntityType>
+  <EntityType Name="user_profile">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="type" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="app_user" Relationship="Self.app_user_user_profile" FromRole="user_profile" ToRole="app_user" />
+  </EntityType>
+  <Association Name="fk_review_app_user1">
+    <End Role="app_user" Type="Self.app_user" Multiplicity="1" />
+    <End Role="review" Type="Self.review" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="app_user">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="review">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_reviewcomment_app_user1">
+    <End Role="app_user" Type="Self.app_user" Multiplicity="1" />
+    <End Role="reviewcomment" Type="Self.reviewcomment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="app_user">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="reviewcomment">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_task_app_user1">
+    <End Role="app_user" Type="Self.app_user" Multiplicity="1" />
+    <End Role="task" Type="Self.task" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="app_user">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="task">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_review_place1">
+    <End Role="place" Type="Self.place" Multiplicity="1" />
+    <End Role="review" Type="Self.review" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="place">
+        <PropertyRef Name="place_id" />
+      </Principal>
+      <Dependent Role="review">
+        <PropertyRef Name="place_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_task_place1">
+    <End Role="place" Type="Self.place" Multiplicity="1" />
+    <End Role="task" Type="Self.task" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="place">
+        <PropertyRef Name="place_id" />
+      </Principal>
+      <Dependent Role="task">
+        <PropertyRef Name="place_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="app_user_user_profile">
+    <End Role="app_user" Type="Self.app_user" Multiplicity="*" />
+    <End Role="user_profile" Type="Self.user_profile" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="journalEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="app_user" EntityType="Self.app_user" />
+    <EntitySet Name="place" EntityType="Self.place" />
+    <EntitySet Name="review" EntityType="Self.review" />
+    <EntitySet Name="reviewcomment" EntityType="Self.reviewcomment" />
+    <EntitySet Name="task" EntityType="Self.task" />
+    <EntitySet Name="user_profile" EntityType="Self.user_profile" />
+    <AssociationSet Name="fk_review_app_user1" Association="Self.fk_review_app_user1">
+      <End Role="app_user" EntitySet="app_user" />
+      <End Role="review" EntitySet="review" />
+    </AssociationSet>
+    <AssociationSet Name="fk_reviewcomment_app_user1" Association="Self.fk_reviewcomment_app_user1">
+      <End Role="app_user" EntitySet="app_user" />
+      <End Role="reviewcomment" EntitySet="reviewcomment" />
+    </AssociationSet>
+    <AssociationSet Name="fk_task_app_user1" Association="Self.fk_task_app_user1">
+      <End Role="app_user" EntitySet="app_user" />
+      <End Role="task" EntitySet="task" />
+    </AssociationSet>
+    <AssociationSet Name="fk_review_place1" Association="Self.fk_review_place1">
+      <End Role="place" EntitySet="place" />
+      <End Role="review" EntitySet="review" />
+    </AssociationSet>
+    <AssociationSet Name="fk_task_place1" Association="Self.fk_task_place1">
+      <End Role="place" EntitySet="place" />
+      <End Role="task" EntitySet="task" />
+    </AssociationSet>
+    <AssociationSet Name="app_user_user_profile" Association="Self.app_user_user_profile">
+      <End Role="app_user" EntitySet="app_user" />
+      <End Role="user_profile" EntitySet="user_profile" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

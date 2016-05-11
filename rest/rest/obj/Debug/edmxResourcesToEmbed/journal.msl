@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="journalModelStoreContainer" CdmEntityContainer="journalEntities1">
+    <EntitySetMapping Name="app_user">
+      <EntityTypeMapping TypeName="journalModel.app_user">
+        <MappingFragment StoreEntitySet="app_user">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="sso_id" ColumnName="sso_id" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="first_name" ColumnName="first_name" />
+          <ScalarProperty Name="last_name" ColumnName="last_name" />
+          <ScalarProperty Name="email" ColumnName="email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="place">
+      <EntityTypeMapping TypeName="journalModel.place">
+        <MappingFragment StoreEntitySet="place">
+          <ScalarProperty Name="place_id" ColumnName="place_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="street" ColumnName="street" />
+          <ScalarProperty Name="house" ColumnName="house" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="type" ColumnName="type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="review">
+      <EntityTypeMapping TypeName="journalModel.review">
+        <MappingFragment StoreEntitySet="review">
+          <ScalarProperty Name="review_id" ColumnName="review_id" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="text" ColumnName="text" />
+          <ScalarProperty Name="mark" ColumnName="mark" />
+          <ScalarProperty Name="picture" ColumnName="picture" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="place_id" ColumnName="place_id" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="task_id" ColumnName="task_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="reviewcomment">
+      <EntityTypeMapping TypeName="journalModel.reviewcomment">
+        <MappingFragment StoreEntitySet="reviewcomment">
+          <ScalarProperty Name="reviewcomment_id" ColumnName="reviewcomment_id" />
+          <ScalarProperty Name="text" ColumnName="text" />
+          <ScalarProperty Name="mark" ColumnName="mark" />
+          <ScalarProperty Name="review_id" ColumnName="review_id" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="task">
+      <EntityTypeMapping TypeName="journalModel.task">
+        <MappingFragment StoreEntitySet="task">
+          <ScalarProperty Name="task_id" ColumnName="task_id" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="datecreated" ColumnName="datecreated" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="changeddate" ColumnName="changeddate" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="place_id" ColumnName="place_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="user_profile">
+      <EntityTypeMapping TypeName="journalModel.user_profile">
+        <MappingFragment StoreEntitySet="user_profile">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="type" ColumnName="type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="app_user_user_profile" TypeName="journalModel.app_user_user_profile" StoreEntitySet="app_user_user_profile">
+      <EndProperty Name="app_user">
+        <ScalarProperty Name="user_id" ColumnName="user_id" />
+      </EndProperty>
+      <EndProperty Name="user_profile">
+        <ScalarProperty Name="id" ColumnName="user_profile_id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6ee5ba18c78b41768e7b8a598af80430" Name="Diagram1">
+        <EntityTypeShape EntityType="journalModel.app_user" Width="1.5" PointX="0.75" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="journalModel.place" Width="1.5" PointX="0.75" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="journalModel.review" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="journalModel.reviewcomment" Width="1.5" PointX="3" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="journalModel.task" Width="1.5" PointX="6" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="journalModel.user_profile" Width="1.5" PointX="3" PointY="16.25" IsExpanded="true" />
+        <AssociationConnector Association="journalModel.fk_review_app_user1" ManuallyRouted="false" />
+        <AssociationConnector Association="journalModel.fk_reviewcomment_app_user1" ManuallyRouted="false" />
+        <AssociationConnector Association="journalModel.fk_task_app_user1" ManuallyRouted="false" />
+        <AssociationConnector Association="journalModel.fk_review_place1" ManuallyRouted="false" />
+        <AssociationConnector Association="journalModel.fk_task_place1" ManuallyRouted="false" />
+        <AssociationConnector Association="journalModel.app_user_user_profile" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
