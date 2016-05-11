@@ -16,13 +16,8 @@ namespace rest
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
+                routeTemplate: "docapi/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "ExtendingApi",
-                routeTemplate: "api/{controller}/{userName}"
             );
         }
     }
