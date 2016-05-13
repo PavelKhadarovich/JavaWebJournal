@@ -99,7 +99,7 @@ namespace rest.Functionality
                         .Alignment(Element.ALIGN_CENTER)
                         .SpacingAfter(20)
                     .EndParagraph()
-                    .CreateImage(@"D:\" + review.picture)
+                    .CreateImage(review.picture)
                         .ScaleAbsolute(170f, 170f)
                         .Alignment(Image.TEXTWRAP | Image.ALIGN_RIGHT)
                         .IdentationLeft(9f)
