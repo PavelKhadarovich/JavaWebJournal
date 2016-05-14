@@ -10,7 +10,7 @@ namespace rest.Functionality
     {
         private PdfWrapper _parent;
 
-        private string _imagePath;
+        private string _imageUrl;
         private int _alignment;
         private float _identationLeft;
         private float _identationRight;
@@ -20,11 +20,11 @@ namespace rest.Functionality
         private float _scailingHeight;
 
 
-        public PdfImageWrapper(PdfWrapper wrapper, string imagePath)
+        public PdfImageWrapper(PdfWrapper wrapper, string imageUrl)
         {
             _parent = wrapper;
 
-            _imagePath = imagePath;
+            _imageUrl = imageUrl;
         }
 
 
@@ -67,7 +67,7 @@ namespace rest.Functionality
 
         public PdfWrapper End()
         {
-            var image = Image.GetInstance(_imagePath);
+            var image = Image.GetInstance(_imageUrl);
             if (_wasScailingSet)
             {
                 image.ScaleAbsolute(_scailingWidth, _scailingHeight);

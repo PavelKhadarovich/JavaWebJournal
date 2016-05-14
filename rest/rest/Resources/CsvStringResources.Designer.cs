@@ -61,6 +61,15 @@ namespace rest.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to text/csv.
+        /// </summary>
+        internal static string CsvMimeType {
+            get {
+                return ResourceManager.GetString("CsvMimeType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to UserTypes.csv.
         /// </summary>
         internal static string FileName {

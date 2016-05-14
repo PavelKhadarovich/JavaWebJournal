@@ -147,4 +147,7 @@
   <data name="WorkSheetName" xml:space="preserve">
     <value>some</value>
   </data>
+  <data name="ExcelMimeType" xml:space="preserve">
+    <value>application/vnd.ms-excel</value>
+  </data>
 </root>

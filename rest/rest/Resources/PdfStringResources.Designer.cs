@@ -106,6 +106,15 @@ namespace rest.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to application/pdf.
+        /// </summary>
+        internal static string PdfMimeType {
+            get {
+                return ResourceManager.GetString("PdfMimeType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to PlaceDescription.pdf.
         /// </summary>
         internal static string PlaceDescriptionFileName {

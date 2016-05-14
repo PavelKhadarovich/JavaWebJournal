@@ -132,6 +132,9 @@
   <data name="MergedEmployeeHeader" xml:space="preserve">
     <value>Employees buisiness in month</value>
   </data>
+  <data name="PdfMimeType" xml:space="preserve">
+    <value>application/pdf</value>
+  </data>
   <data name="PlaceDescriptionFileName" xml:space="preserve">
     <value>PlaceDescription.pdf</value>
   </data>

@@ -11,14 +11,17 @@ using System.Linq;
 using System.Text;
 using System.Web;
 using System.Web.Configuration;
+using System.Web.Mvc;
 
 namespace rest.Functionality
 {
     public static class PdfFileSaver
     {
-        public static FileCreationResult SaveEmployeesBuisinessByMonth(IEnumerable<app_user> employees)
+        private static readonly string fictiveFileName = String.Empty;
+
+        public static MemoryStream SaveEmployeesBuisinessByMonth(IEnumerable<app_user> employees)
         {
-            var pdfWrapper = new PdfWrapper(WebConfigurationManager.AppSettings["documentsDirectory"] + PdfStringResources.EmployeeBuisinessFileName);
+            var pdfWrapper = new PdfWrapper(fictiveFileName);
 
             try
             {
@@ -77,17 +80,18 @@ namespace rest.Functionality
             }
             catch
             {
-                return FileCreationResult.CreateUnsuccessful(FileCreationStatus.InternalWebServiceError);
+                pdfWrapper.MakeStreamClosable();
+                throw;
             }
             finally
             {
                 pdfWrapper.EndDocument();
             }
-
-            return FileCreationResult.CreateSuccessful();
+            
+            return pdfWrapper.Output;
         }
 
-        public static FileCreationResult SavePlaceDescription(review review)
+        public static MemoryStream SavePlaceDescription(review review)
         {
             var pdfWrapper = new PdfWrapper(WebConfigurationManager.AppSettings["documentsDirectory"] + PdfStringResources.PlaceDescriptionFileName);
 
@@ -99,7 +103,7 @@ namespace rest.Functionality
                         .Alignment(Element.ALIGN_CENTER)
                         .SpacingAfter(20)
                     .EndParagraph()
-                    .CreateImage(@"D:\" + review.picture)
+                    .CreateImage(review.picture)
                         .ScaleAbsolute(170f, 170f)
                         .Alignment(Image.TEXTWRAP | Image.ALIGN_RIGHT)
                         .IdentationLeft(9f)
@@ -115,14 +119,15 @@ namespace rest.Functionality
             }
             catch
             {
-                return FileCreationResult.CreateUnsuccessful(FileCreationStatus.InternalWebServiceError);
+                pdfWrapper.MakeStreamClosable();
+                throw;
             }
             finally
             {
                 pdfWrapper.EndDocument();
             }
 
-            return FileCreationResult.CreateSuccessful();
+            return pdfWrapper.Output;
         }
     }
 }

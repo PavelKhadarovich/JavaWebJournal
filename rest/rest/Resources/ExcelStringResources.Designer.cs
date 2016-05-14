@@ -79,6 +79,15 @@ namespace rest.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to application/vnd.ms-excel.
+        /// </summary>
+        internal static string ExcelMimeType {
+            get {
+                return ResourceManager.GetString("ExcelMimeType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Average mark for places.
         /// </summary>
         internal static string IntroPlacesStatistics {

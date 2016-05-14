@@ -10,15 +10,17 @@ namespace rest.Functionality
 {
     public class PdfWrapper
     {
-        private FileStream _output;
         private PdfWriter _pdfWriter;
+
+
+        public MemoryStream Output { get; private set; }
 
         public Document Document { get; private set; }
 
 
         public PdfWrapper(string fileName)
         {
-            _output = new FileStream(fileName, FileMode.Create, FileAccess.Write, FileShare.None);
+            Output = new MemoryStream();
         }
 
         public PdfWrapper StartDocument()
@@ -60,9 +62,17 @@ namespace rest.Functionality
         {
             Document.Close();
             _pdfWriter.Close();
-            _output.Close();
         }
 
+        public void MakeStreamClosable()
+        {
+            if (_pdfWriter.CloseStream)
+            {
+                throw new InvalidOperationException();
+            }
+
+            _pdfWriter.CloseStream = true;
+        }
 
         private void SetHeaderAndFooterGenerator()
         {
@@ -71,7 +81,8 @@ namespace rest.Functionality
 
         private void SetWriterAndEncription()
         {
-            _pdfWriter = PdfWriter.GetInstance(Document, _output);
+            _pdfWriter = PdfWriter.GetInstance(Document, Output);
+            _pdfWriter.CloseStream = false;
             _pdfWriter.SetEncryption(new byte[] { }, new byte[] { }, 0, PdfWriter.ENCRYPTION_AES_128);
         }
 
@@ -80,7 +91,5 @@ namespace rest.Functionality
             Document.Open();
             Document.NewPage();
         }
-
-        //private void 
     }
 }

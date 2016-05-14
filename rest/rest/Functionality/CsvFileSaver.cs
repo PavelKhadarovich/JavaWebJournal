@@ -14,36 +14,34 @@ namespace rest.Functionality
         private const string separator = ",";
         private const string quote = "\"";
 
-        public static FileCreationResult SaveUserTypeInfo(IEnumerable<app_user> users)
+        public static MemoryStream SaveUserTypeInfo(IEnumerable<app_user> users)
         {
-            var fileName = WebConfigurationManager.AppSettings["documentsDirectory"] + CsvStringResources.FileName;
+            var output = new MemoryStream();
 
-            using (var output = new FileStream(fileName, FileMode.Create))
+            try
             {
-                try
-                {
-                    var headers = new[] { CsvStringResources.UserHeader, CsvStringResources.TypeHeader };
-                    WriteLineToStream(output, headers);
+                var headers = new[] { CsvStringResources.UserHeader, CsvStringResources.TypeHeader };
+                WriteLineToStream(output, headers);
 
-                    foreach (var user in users)
+                foreach (var user in users)
+                {
+                    foreach (var type in user.user_profile)
                     {
-                        foreach (var type in user.user_profile)
-                        {
-                            WriteLineToStream(output, new[] { String.Format("{0} {1}", user.first_name, user.last_name), type.type });
-                        }
+                        WriteLineToStream(output, new[] { String.Format("{0} {1}", user.first_name, user.last_name), type.type });
                     }
                 }
-                catch
-                {
-                    return FileCreationResult.CreateUnsuccessful(FileCreationStatus.InternalWebServiceError);
-                }
+            }
+            catch
+            {
+                output.Dispose();
+                throw;
             }
 
-            return FileCreationResult.CreateSuccessful();
+            return output;
         }
 
 
-        private static void WriteLineToStream(FileStream stream, IEnumerable<string> elementsOfCsvLine)
+        private static void WriteLineToStream(Stream stream, IEnumerable<string> elementsOfCsvLine)
         {
             var concatedMessage = String.Join(separator, elementsOfCsvLine.Select(x => ChangeIfContainsQuoteOrSeparator(x)));
             concatedMessage += Environment.NewLine;

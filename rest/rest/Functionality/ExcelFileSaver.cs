@@ -3,6 +3,7 @@ using rest.FileCreation;
 using rest.Resources;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Configuration;
@@ -11,11 +12,15 @@ namespace rest.Functionality
 {
     public class ExcelFileSaver
     {
-        public static FileCreationResult SavePlacesAverageMarks(IEnumerable<place> places)
+        public static MemoryStream SavePlacesAverageMarks(IEnumerable<place> places)
         {
-            var workbook = new XLWorkbook();
+            var stream = new MemoryStream();
+
             try
             {
+
+                var workbook = new XLWorkbook();
+
                 var worksheet = workbook.Worksheets.Add("some");
 
                 if (places.Count() == 0)
@@ -61,26 +66,23 @@ namespace rest.Functionality
                 }
 
                 worksheet.Columns().AdjustToContents();
-
-                workbook.SaveAs(WebConfigurationManager.AppSettings["documentsDirectory"] + ExcelStringResources.PlacesStatisticsFileName);
+                workbook.SaveAs(stream);
             }
             catch
             {
-                return FileCreationResult.CreateUnsuccessful(FileCreationStatus.InternalWebServiceError);
+                stream.Dispose();
+                throw;
             }
-            finally
-            {
-                workbook.Dispose();
-            }
-
-            return FileCreationResult.CreateSuccessful();
+            return stream;
         }
 
-        public static FileCreationResult SaveReviewCommentStatistics(IEnumerable<app_user> users, review review)
+        public static MemoryStream SaveReviewCommentStatistics(IEnumerable<app_user> users, review review)
         {
-            var workbook = new XLWorkbook();
+            var stream = new MemoryStream();
+
             try
             {
+                var workbook = new XLWorkbook();
                 var worksheet = workbook.Worksheets.Add("some");
 
                 if (users.Count() == 0)
@@ -128,18 +130,15 @@ namespace rest.Functionality
 
                 worksheet.Columns().AdjustToContents();
 
-                workbook.SaveAs(WebConfigurationManager.AppSettings["documentsDirectory"] + ExcelStringResources.ReviewStatisticsFileName);
+                workbook.SaveAs(stream);
             }
             catch
             {
-                return FileCreationResult.CreateUnsuccessful(FileCreationStatus.InternalWebServiceError);
-            }
-            finally
-            {
-                workbook.Dispose();
+                stream.Dispose();
+                throw;
             }
 
-            return FileCreationResult.CreateSuccessful();
+            return stream;
         }
     }
 }
